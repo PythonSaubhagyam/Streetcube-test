@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+            <div class="container">
+                <a class="navbar-brand" href="index.php"></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mobile_nav" aria-controls="mobile_nav" aria-expanded="false" aria-label="Toggle navigation">
+                <div id="nav-icon1">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+                </button>
+                <div class="collapse navbar-collapse" id="mobile_nav">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-md-right">
+                    </ul>
+                    <ul class="navbar-nav navbar-light" id="mynav">
+                        
+                        {% if not current_user.is_authenticated %}
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('front.landing')}}">Home</a></li>
+                       
+                        {% else %}
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('main.dashboard')}}">Dashboard</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('main.booking_slot')}}">Slot Booking</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{url_for('main.logout')}}"><span style='color:yellow'  >{{current_user.email }}</span > Logout</a></li>
+                        {% endif %}
+
+                    </ul>
+                </div>
+            </div>
+</nav>

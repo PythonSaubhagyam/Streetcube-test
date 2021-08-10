@@ -1,0 +1,67 @@
+{% extends 'layout/layout.jinja2' %}
+{% block body %}
+    <div class="container-fluid mt-4 mb-4 px-5">
+        <div class="row px-5 ">
+            <div class="col-md-3 px-5 mb-4">
+                <div class="card">
+                    <div class="btn-group-vertical">
+                        <button type="button" class="btn btn-info bg-dark text-white"><a class="text-decoration-none" href="{{url_for('main.dashboard')}}">Profile</a></button>
+                        <button type="button" class="btn btn-info bg-dark text-white"><a class="text-decoration-none" href="{{url_for('main.change_pass')}}">Change password</a></button>
+                        <button type="button" class="btn btn-info bg-dark text-white"><a class="text-decoration-none" href="{{url_for('main.booked_details')}}">Booked Details</a></button>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="col-md-9">
+            <div class="text-center">
+              {% with messages = get_flashed_messages(with_categories=true)  %}
+
+                  {% if messages %}
+
+                         {% for category,message in messages %}
+                          <div class ="alert alert-{{ category }} alert-dismissible" role="alert">
+                              <button type="button" class="close" data-dismiss='alert' aria-label="close">
+                                  <span aria-hidden="true">x</span>
+                              </button>
+                              {{message}}
+                          </div>
+                          {% endfor %}
+
+                  {%endif%}
+
+              {% endwith %}
+
+            </div>
+            <form method="POST" id="upForm">
+                    <div class="card">
+                        <div class="card-body">
+                        
+                        <h5 class="form-header">
+                            <i class="fa fa-lock"></i>
+                            Change Password
+                            </h5>
+                        <hr>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="oldpass" name="oldpass" placeholder="Enter Your Old Password">
+                        </div>
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="newpass" name="newpass" placeholder="Enter New Password">
+                        </div>
+
+                        <div class="form-group">
+                            <input type="password" class="form-control" id="confpass" name="confpass" placeholder="Enter Confirm Password">
+                        </div>
+                        
+                        <div class="form-footer">
+                            <button type="submit" class="btn btn-success" onClick="validatePassword();"><i class="fa fa-check-square-o"></i>&nbsp;Update Password</button>
+                        </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+           
+        </div>
+    </div>
+
+{% endblock %}

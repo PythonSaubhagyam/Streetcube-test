@@ -1,0 +1,185 @@
+{% extends 'layout/layout.jinja2' %}
+{% block body %}
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div class="container-fluid mt-4 mb-4 px-5">
+<div class="row px-5">
+  <div class="col-md-3 px-5 mb-4">
+    <div class="card bg-primary">
+    <div class="btn-group-vertical">
+      <button type="button" class="btn btn-info bg-dark text-white"><a class="text-decoration-none" href="{{url_for('main.dashboard')}}">Profile</a></button>
+      <button type="button" class="btn btn-info bg-dark text-white"><a class="text-decoration-none" href="{{url_for('main.change_pass')}}">Change password</a></button>
+      <button type="button" class="btn btn-info bg-dark text-white"><a class="text-decoration-none" href="{{url_for('main.booked_details')}}">Booked Details</a></button>
+    </div>
+  </div>
+  </div>
+  <div class="col-md-9">
+    <div class="tab-content" id="myTabContent">
+      <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+      <div class="text-center">
+              {% with messages = get_flashed_messages(with_categories=true)  %}
+
+                  {% if messages %}
+
+                         {% for category,message in messages %}
+                          <div class ="alert alert-{{ category }} alert-dismissible" role="alert">
+                              <button type="button" class="close" data-dismiss='alert' aria-label="close">
+                                  <span aria-hidden="true">x</span>
+                              </button>
+                              {{message}}
+                          </div>
+                          {% endfor %}
+
+                  {%endif%}
+
+              {% endwith %}
+
+      </div>
+      <form  id="signupForm" method="POST" autocomplete="off">
+        <div class="card">
+                <div class="card-body">
+
+                    <h5 class="form-header text-uppercase">
+                      <i class="fa fa-address-book-o"></i>
+                      User Profile
+                    </h5>
+                    <hr>
+                    <div class="form-group row">
+                      <label for="input-10" class="col-sm-2 col-form-label">User Name</label>
+                      <div class="col-sm-10">
+                        <input type="text" class="form-control" id="uname" name="uname" value="{{user.uname}}">
+                      </div>
+                    </div>
+                    
+                    <div class="form-group row">
+                      <label for="input-pass" class="col-sm-2 col-form-label">Assign Role</label>
+                      <div class="col-sm-10">
+
+                        <input type="text" class="form-control" id="input-role" name="role" value="{{role.role_title}}" disabled="">
+                      
+                      </div>
+                    </div>
+
+                    <h5 class="form-header text-uppercase">
+                    <i class="fa fa-envelope-o"></i>
+                      Contact Info
+                    </h5>
+                    <hr>
+                    <div class="form-group row">
+                      <label for="input-14" class="col-sm-2 col-form-label">E-mail</label>
+                      <div class="col-sm-4">
+                        <input type="email" class="form-control" id="input-14" name="email" value="{{user.email}}">
+                      </div>
+                      <label for="input-16" class="col-sm-2 col-form-label">Contact Number</label>
+                      <div class="col-sm-4">
+                        <input type="text" class="form-control" id="input-16" name="mobile" value="{{user.mobile}}">
+                      </div>
+                    </div>
+                </div>
+              </div>
+              <!-- card 2 -->
+              <div class="card mt-4">
+                <div class="card-body">
+                    <h5 class="form-header text-uppercase">
+                      <i class="fa fa-user-circle-o"></i>
+                      Trader Details
+                    </h5>
+                    <hr>
+                    <div class="form-group row">
+                      <label for="input-1" class="col-sm-2 col-form-label">Address</label>
+                      <div class="col-sm-4">
+                          <textarea class="form-control" id="input-1" name="address" value="{{user.id}}">{{user.address}}</textarea>
+                      </div>
+                      <label for="input-2" class="col-sm-2 col-form-label">Company Name</label>
+                      <div class="col-sm-4">
+                        {# <input type="text" class="form-control" id="inputa" name="c_name" value="{{tr.c_name}}"> #}
+                      </div>
+                    </div>
+                      <div class="form-group row">
+
+                        <label for="input-2" class="col-sm-2 col-form-label">Brand Name</label>
+                      <div class="col-sm-4">
+                      {#  <input type="text" class="form-control" id="inputb" name="b_name" value="{{tr.b_name}}"> #}
+                      </div>
+                      <label for="input-2" class="col-sm-2 col-form-label">Description of services and products</label>
+                      <div class="col-sm-4">
+                      {#  <textarea class="form-control" id="inputd" name="descrip_of_service" value="{{tr.descrip_of_service}}">{{tr.descrip_of_service}}</textarea> #}
+                      </div>
+
+                    </div>
+
+                      <div class="form-group row">
+                      <label for="input-2" class="col-sm-2 col-form-label">Story - how did you start up?</label>
+                      <div class="col-sm-4">
+                      {#    <textarea class="form-control" id="inputg" name="story" value="{{tr.story}}">{{tr.story}}</textarea> #}
+                      </div>
+                    </div>
+
+                    <h5 class="form-header">
+                    <i class="fa fa-file-text-o"></i>
+                      Documents Upload &nbsp;&nbsp;<input type="checkbox" class="" id="updocs" name="updocs" style="top: .8rem; width: 1.25rem;height: 1rem;">  
+                    </h5>
+                    <hr>
+                    <div class="answer" style="display: block;">
+                    <div class="form-group row">
+                      <label for="input-8" class="col-sm-2 col-form-label">Public liability insurance</label>
+                      <div class="col-sm-4">
+                          <div class="custom-filex">
+                                <div class="filepond--root true filepond--hopper" id="pub_lib_insu" data-style-button-remove-item-position="left" data-style-button-process-item-position="right" data-style-load-indicator-position="right" data-style-progress-indicator-position="right" data-style-button-remove-item-align="false" style="height: 76px;"><input class="filepond--browser" type="file" id="filepond--browser-sumdriahz" name="pub_lib_insu" aria-controls="filepond--assistant-sumdriahz" aria-labelledby="filepond--drop-label-sumdriahz" accept="image/jpg,image/jpeg,image/png,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple=""><div class="filepond--drop-label" style="transform: translate3d(0px, 0px, 0px); opacity: 1;"><label for="filepond--browser-sumdriahz" id="filepond--drop-label-sumdriahz" aria-hidden="true">Drag &amp; Drop your files or <span class="filepond--label-action" tabindex="0">Browse</span></label></div><div class="filepond--list-scroller" style="transform: translate3d(0px, 60px, 0px);"><ul class="filepond--list" role="list"></ul></div><div class="filepond--panel filepond--panel-root" data-scalable="true"><div class="filepond--panel-top filepond--panel-root"></div><div class="filepond--panel-center filepond--panel-root" style="transform: translate3d(0px, 8px, 0px) scale3d(1, 0.6, 1);"></div><div class="filepond--panel-bottom filepond--panel-root" style="transform: translate3d(0px, 68px, 0px);"></div></div><span class="filepond--assistant" id="filepond--assistant-sumdriahz" role="status" aria-live="polite" aria-relevant="additions"></span><div class="filepond--drip"></div><fieldset class="filepond--data"></fieldset></div>
+                              </div>
+                      </div>
+
+                      <label for="input-8" class="col-sm-2 col-form-label">Covid-19 risk assessment form</label>
+                      <div class="col-sm-4">
+                          <div class="custom-filex">
+                        <div class="filepond--root true filepond--hopper" id="c_19risk_asses" data-style-button-remove-item-position="left" data-style-button-process-item-position="right" data-style-load-indicator-position="right" data-style-progress-indicator-position="right" data-style-button-remove-item-align="false" style="height: 76px;"><input class="filepond--browser" type="file" id="filepond--browser-f4ne917qi" name="c_19risk_asses" aria-controls="filepond--assistant-f4ne917qi" aria-labelledby="filepond--drop-label-f4ne917qi" accept="image/jpg,image/jpeg,image/png,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple=""><div class="filepond--drop-label" style="transform: translate3d(0px, 0px, 0px); opacity: 1;"><label for="filepond--browser-f4ne917qi" id="filepond--drop-label-f4ne917qi" aria-hidden="true">Drag &amp; Drop your files or <span class="filepond--label-action" tabindex="0">Browse</span></label></div><div class="filepond--list-scroller" style="transform: translate3d(0px, 60px, 0px);"><ul class="filepond--list" role="list"></ul></div><div class="filepond--panel filepond--panel-root" data-scalable="true"><div class="filepond--panel-top filepond--panel-root"></div><div class="filepond--panel-center filepond--panel-root" style="transform: translate3d(0px, 8px, 0px) scale3d(1, 0.6, 1);"></div><div class="filepond--panel-bottom filepond--panel-root" style="transform: translate3d(0px, 68px, 0px);"></div></div><span class="filepond--assistant" id="filepond--assistant-f4ne917qi" role="status" aria-live="polite" aria-relevant="additions"></span><div class="filepond--drip"></div><fieldset class="filepond--data"></fieldset></div>
+                          </div>
+                      </div>
+
+
+                    </div>
+                    <div class="form-group row">
+                      <label for="input-8" class="col-sm-2 col-form-label">Food and hygiene certificate</label>
+                      <div class="col-sm-4">
+                          <div class="custom-filex">
+                        <div class="filepond--root true filepond--hopper" id="food_certi" data-style-button-remove-item-position="left" data-style-button-process-item-position="right" data-style-load-indicator-position="right" data-style-progress-indicator-position="right" data-style-button-remove-item-align="false" style="height: 76px;"><input class="filepond--browser" type="file" id="filepond--browser-l3onagoo8" name="food_certi" aria-controls="filepond--assistant-l3onagoo8" aria-labelledby="filepond--drop-label-l3onagoo8" accept="image/jpg,image/jpeg,image/png,application/pdf,application/msword,application/vnd.openxmlformats-officedocument.wordprocessingml.document" multiple=""><div class="filepond--drop-label" style="transform: translate3d(0px, 0px, 0px); opacity: 1;"><label for="filepond--browser-l3onagoo8" id="filepond--drop-label-l3onagoo8" aria-hidden="true">Drag &amp; Drop your files or <span class="filepond--label-action" tabindex="0">Browse</span></label></div><div class="filepond--list-scroller" style="transform: translate3d(0px, 60px, 0px);"><ul class="filepond--list" role="list"></ul></div><div class="filepond--panel filepond--panel-root" data-scalable="true"><div class="filepond--panel-top filepond--panel-root"></div><div class="filepond--panel-center filepond--panel-root" style="transform: translate3d(0px, 8px, 0px) scale3d(1, 0.6, 1);"></div><div class="filepond--panel-bottom filepond--panel-root" style="transform: translate3d(0px, 68px, 0px);"></div></div><span class="filepond--assistant" id="filepond--assistant-l3onagoo8" role="status" aria-live="polite" aria-relevant="additions"></span><div class="filepond--drip"></div><fieldset class="filepond--data"></fieldset></div>
+                          </div>
+                      </div>
+                    </div>
+
+                    </div>
+                    <hr>
+                    <div class="form-footer">
+                        <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> CANCEL</button>
+                        <button type="submit" class="btn btn-success"><i class="fa fa-check-square-o"></i> UPDATE</button>
+                    </div>
+                </div>
+              </div>
+              
+      </div>
+      </form>  
+
+    </div>
+  </div>
+</div> 
+</div>
+
+<script>
+$(document).ready(function() {
+
+    $('.answer').hide();
+
+    $('#updocs').click(function() {
+      if( $(this).is(':checked')) {
+          $(".answer").show();
+      } else {
+          $(".answer").hide();
+      }
+    }); 
+
+});
+
+</script>
+
+{% endblock  %}

@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<title>{% block title %}StreetCube-Home{% endblock %} </title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" href="/static/boots/css/bootstrap.min.css">
+ 		<script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+		
+		
+		<!-- font style -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
+
+		
+		
+		
+		<link rel="stylesheet" href="/static/boots/css/costom-style.css">
+		<style type="text/css">
+			.loader{
+				display: none;
+			}
+		</style>
+	</head>
+	<body>
+
+		<section class="main_section">
+			<!-- LOGO SECTION -->
+			<!--
+			<div class="p-5 logo_area">
+				<img width="120" src="/static/img/logo.png">
+			</div>
+		-->
+			<!-- LOGO SECTION END-->
+
+			  {% block content %}  {% endblock %}
+
+
+
+			  <!-- FOOTER SECTION -->
+			<div class="footer_area">
+				<nav class="navbar navbar-expand-lg border-bottom navbar-dark">
+            <div class="container">
+               
+                <button class="navbar-toggler" style="margin: 0 auto;" type="button" data-toggle="collapse" data-target="#mobile_nav" aria-controls="mobile_nav" aria-expanded="false" aria-label="Toggle navigation">
+                <!-- <span class="navbar-toggler-icon"></span> -->
+                MENU
+                
+                </button>
+                <div class="collapse navbar-collapse" id="mobile_nav">
+                    <ul class="navbar-nav mr-auto mt-2 mt-lg-0 float-md-right">
+                    </ul>
+                    <ul class="navbar-nav navbar-light" id="mynav">                       
+                        <li class="nav-item"><a class="nav-link" href="/landing">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Markets</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Franchise</a></li>
+                        <li class="nav-item"><a class="nav-link" href="/login">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        		<a href="#" class="a_none">
+				<div class="partners_btn">
+					PARTNERS
+				</div>
+				</a>
+			</div>
+			<!-- FOOTER SECTION END -->
+		</section>
+
+
+
+
+		<!-- Login Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Login</h5>
+        
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button><br>
+
+      </div>
+      <form id="myform">
+      <div class="modal-body">
+      		<div id="msg"></div>
+        
+          <div class="form-group">
+            <label for="recipient-name" class="col-form-label">Email:</label>
+            <input type="text" class="form-control" id="email" name="email" placeholder="Enter email">
+          </div>
+          <div class="form-group">
+            <label for="message-text" class="col-form-label">Password:</label>
+             <input type="password" class="form-control" id="pass" name="password" placeholder="Enter Password">
+          </div>
+        
+      </div>
+      <div class="modal-footer text-center">
+        
+        <div class="loader">
+        	<p>Please wait...</p>
+        </div>&nbsp;&nbsp;&nbsp;
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </div>
+      </form>
+    </div>
+  </div>
+</div>
+<!--End Model-->
+		{% block javascript %}
+			<script type="text/javascript">
+				
+				$(document).ready(function () {
+				  $('form').on('submit', function (event) {
+
+				    var formData = {
+				      email: $("#email").val(),
+				      password: $("#pass").val(),
+				    };
+
+				    $.ajax({
+				      method: "POST",
+				      url: "{{url_for('front.front_login')}}",
+				      data: formData,
+				      beforeSend:function(){
+				      	$('.loader').show();
+				      },
+				     
+				    }).done(function (data) {
+				    	if(data.error=='0'){
+				    		$('.loader').hide();
+				    		$('#msg').css("color", "green").html(data.msg);
+				    		$('#myform')[0].reset();
+							url = "{{url_for('main.dashboard')}}";
+				    		
+				    	}
+				    	else{
+				    		$('.loader').hide();
+				    		$('#msg').css("color", "red").html(data.msg);
+				    		$('#myform')[0].reset();
+				    	}
+				     
+				      
+				    });
+
+				    event.preventDefault();
+				  });
+				});
+
+			</script>
+		
+	   		
+    	
+		{% endblock %}
+<script src="/static/boots/js/popper.min.js"></script>
+		<script src="/static/boots/js/bootstrap.min.js"></script>
+	</body>
+</html>

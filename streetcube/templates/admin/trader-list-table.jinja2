@@ -1,0 +1,70 @@
+{% extends 'admin/layout.jinja2' %}
+{%block body%}
+<div class="clearfix"></div>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header"><i class="fa fa-table"></i> Data Exporting</div>
+            <div class="card-body">
+              <div class="table-responsive">
+              <table id="example" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Book slot</th>
+                        <th>Member Name</th>
+                        <th>Address</th>
+                        <th>Mobile</th>
+                        <th>Email</th>
+                        <th>Company Name</th>
+                        <th>Brand Name</th>
+                        <th>Insurance</th>
+                        <th>Covid-19 Form</th>
+                        <th>Hygiene Cert.</th>
+                       
+                    </tr>
+                </thead>
+                <tbody>
+                {% if trader_list %}
+                {% for tlist in trader_list %}
+                    <tr>
+                        <td><a href="{{url_for('admin.slot_book',id=tlist.member_id)}}"> Book Slot </a></td>
+                        <td>
+                        {% if tlist.member_name %}{{ tlist.member_name }}{% endif %}
+                        </td>
+                        <td>{{ tlist.address }}</td>
+                        <td>{{ tlist.mobile }}</td>
+                        <td>{{ tlist.email }}</td>
+                        <td>{{ tlist.c_name }}</td>
+                        <td>{{ tlist.b_name  }}</td>
+                        <td><a href ="/static/insurence_doc/{{ tlist.pub_lib_insu }}">view doc</a></td>
+                        <td><a href ="/static/covid19_asses_doc/{{ tlist.c_19risk_asses}}"> View doc </a></td>
+                        <td><a href="/static/food_hygiene_doc/{{ tlist.food_certi }}">View doc</a></td>
+                       
+                    </tr>
+                {%endfor%}
+                {%endif%}
+                </tbody>
+            </table>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Row-->
+<!--start overlay-->
+          <div class="overlay toggle-menu"></div>
+        <!--end overlay-->
+    </div>
+    <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+
+{% endblock %}
+
+
+

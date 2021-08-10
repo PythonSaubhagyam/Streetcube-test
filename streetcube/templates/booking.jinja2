@@ -1,0 +1,150 @@
+{% extends 'layout/layout.jinja2' %}
+{% block body %}
+
+<link id="bsdp-css" href="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/css/bootstrap-datepicker3.min.css" rel="stylesheet">
+<script src="https://unpkg.com/bootstrap-datepicker@1.9.0/dist/js/bootstrap-datepicker.min.js"></script>
+
+    <style>
+    .datepicker table tr td.disabled, .datepicker table tr td.disabled:hover {
+    background: 0 0;
+    color: #777;
+    cursor: default;
+    background-color: #f0c53a;
+}
+    </style>
+<section class="page-bg">
+	<div class="container text-center">
+		<img width="150" src="{{ url_for('static', filename='images/logo/logo.png')}}">
+		<h1 class="text-white mt-5">Select your slot and pay.</h1>
+	</div>
+</section>
+
+<section class="bg-silver pb-5 pt-5">
+	<div class="container bg-white pt-4 pb-4">
+        <form method="POST">
+
+		{{form.csrf_token}}
+		<div class="row" >
+			<div class="col-md-6 text-center mb-4">
+				<h5>Your market slot (14 F)</h5>
+				<img class="border p-3 img-fluid" src="{{ url_for('static', filename='images/banner/short_map.jpg')}}">
+			</div>
+			<div class="col-md-6 mb-4">
+				<h5 class="text-center mb-3">Select date</h5>
+                <input id="cal" type="text" class="form-control " name="select_date" autocomplete="off">
+                 {% for error in form.select_date.errors %}
+                    <span style="color:red;">{{error}}</span>
+                {% endfor %}
+                <!--<div id="cal" class="datepicker_full_width"/>-->
+
+            </div>
+		</div>
+		<hr>
+		<div class="row">
+			<div class="col-md-6">
+				<p>You have selected market slot <b id="slot" class="text-danger">{{ ide }}</b>.</p>
+				<p>You have selected market slot for <b id="book-date" class="text-danger"></b>.</p>
+				<p>And your total amount is <b id="slot-price" class="text-danger"></b></p>
+			</div>
+			<div class="col-md-6 text-right">
+                <button class="btn btn-danger mt-4" type="submit">Proceed to pay&nbsp;&nbsp<span id="total"></span></button>
+			</div>
+		</div>
+        </form>
+
+        <div class="text-center">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+              {% if messages %}
+                <ul class=flashes>
+                {% for category, message in messages %}
+                  <li class="{{ category }}">{{ message }}</li>
+                {% endfor %}
+                </ul>
+              {% endif %}
+            {% endwith %}
+        </div>
+
+	</div>
+</section>
+<script>
+     {#$('#cal').datepicker({
+
+        daysOfWeekDisabled: "1,2,3,4",
+        // daysOfWeekHighlighted: "0,5,6",
+        todayHighlight: true,
+         multidateSeparator: ',',
+         multidate: true,
+    });#}
+
+</script>
+    <script>
+        $( document ).ready(function() {
+          $('#cal').datepicker({
+              daysOfWeekDisabled: "1,2,3,4",
+              multidate: true,
+              multidateSeparator: ',',
+              format: 'yyyy-mm-dd',
+              todayHighlight:'TRUE',
+              //startDate: '-0d',
+              datesDisabled:{{ list_date }},
+              startDate: "now()",
+          });
+        });
+</script>
+<script>
+
+$(document).ready(function(){
+
+     let array = [ ];
+     $('#cal').on('blur',function () {
+
+        var inputDate = $(this).val();
+
+        array = inputDate.split(',');
+        console.log(array);
+
+        $('#book-date').text("     "+inputDate)
+        
+        total = removeDuplicates(array);
+        len = total.length;
+
+        $("#slot-price").html("£"+len*{{s_price}});
+        $("#total").html("£"+len*{{s_price}});
+        //console.log(arr)
+
+      });
+
+      // append multiple values to the array
+
+    function removeDuplicates(data) {
+        let unique = [];
+        data.forEach(element =>{
+            if (!unique.includes(element)){
+                if(element!=""){
+                      unique.push(element)
+                }
+
+            }
+        });
+        return unique;
+
+    }
+
+});
+
+
+</script>
+
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
+
+
+
+
+
+
+
+

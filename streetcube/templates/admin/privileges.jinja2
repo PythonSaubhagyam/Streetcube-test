@@ -1,0 +1,151 @@
+{% from "admin/_form_macros.jinja2" import render_field %}
+{% extends 'admin/layout.jinja2' %}
+{% block body %}
+    <div class="clearfix"></div>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+    <!-------------------------------------------------------------YOUR AREA ---------------------------------------------->
+  <form  method="POST">
+        {{ form.csrf_token }}
+    <div class="row">
+
+      <div class="col-lg-6">
+         <div class="card">
+           <div class="card-body">
+           <div class="card-title">Add Admin Manager</div>
+           <hr>
+
+           <div class="form-group">
+            {{ render_field(form.uname, class="form-control", placeholder="Enter Your Name") }}
+           </div>
+           <div class="form-group">
+            {{ render_field(form.email, class="form-control", placeholder="Enter Your Email") }}
+           </div>
+           <div class="form-group">
+            {{ render_field(form.mobile, class="form-control", placeholder="Enter Your Mobile Number") }}
+
+           </div>
+           <div class="form-group">
+              {{ render_field(form.password, class="form-control", placeholder="Enter Your Password") }}
+           </div>
+         </div>
+         </div>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="card">
+           <div class="card-body">
+
+           <div class="card-title">Provide Privileges</div>
+           <hr>
+          <div class="form-group row">
+            <label for="input-21" class="col-sm-6 col-form-label">Dashboard</label>
+            <div class="col-sm-6 text-center">
+              <input type="checkbox" class="js-switch" data-color="#eb5076" data-secondary-color="#03d0ea" name="auth" value="1"/>
+            <!-- <input type="text" class="form-control" id="input-21" placeholder="Enter Your Name"> -->
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="input-21" class="col-sm-6 col-form-label">Create User</label>
+            <div class="col-sm-6 text-center">
+              <input type="checkbox" class="js-switch" data-color="#eb5076" data-secondary-color="#03d0ea" name="auth" value="2"/>
+            <!-- <input type="text" class="form-control" id="input-21" placeholder="Enter Your Name"> -->
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="input-21" class="col-sm-6 col-form-label">Show User List</label>
+            <div class="col-sm-6 text-center">
+              <input type="checkbox" class="js-switch" data-color="#eb5076" data-secondary-color="#03d0ea" name="auth" value="3"/>
+            <!-- <input type="text" class="form-control" id="input-21" placeholder="Enter Your Name"> -->
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="input-21" class="col-sm-6 col-form-label">Show Trader List</label>
+            <div class="col-sm-6 text-center">
+              <input type="checkbox" class="js-switch" data-color="#eb5076" data-secondary-color="#03d0ea" name="auth" value="4"/>
+            <!-- <input type="text" class="form-control" id="input-21" placeholder="Enter Your Name"> -->
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="input-21" class="col-sm-6 col-form-label">Show Slot Book List</label>
+            <div class="col-sm-6 text-center">
+              <input type="checkbox" class="js-switch" data-color="#eb5076" data-secondary-color="#03d0ea" name="auth" value="5"/>
+            <!-- <input type="text" class="form-control" id="input-21" placeholder="Enter Your Name"> -->
+            </div>
+          </div>
+
+          <div class="form-group row">
+            <label for="input-21" class="col-sm-6 col-form-label">Show Order List</label>
+            <div class="col-sm-6 text-center">
+              <input type="checkbox" class="js-switch" data-color="#eb5076" data-secondary-color="#03d0ea" name="auth" value="6"/>
+            <!-- <input type="text" class="form-control" id="input-21" placeholder="Enter Your Name"> -->
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <label for="input-21" class="col-sm-6 col-form-label">Slot Report</label>
+            <div class="col-sm-6 text-center">
+              <input type="checkbox" class="js-switch" data-color="#eb5076" data-secondary-color="#03d0ea" name="auth" value="7"/>
+            <!-- <input type="text" class="form-control" id="input-21" placeholder="Enter Your Name"> -->
+            </div>
+          </div>
+
+           <div class="form-group row">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-7 text-center">
+            <button type="submit" class="btn btn-primary px-5"><i class="icon-lock"></i>&nbsp;Add Manager</button>
+            </div>
+          </div>
+
+
+         </div>
+         </div>
+      </div>
+
+    </div><!--End Row-->
+      </form>
+
+    <!-------------------------------------------------------------YOUR AREA END ---------------------------------------------->
+    </div>
+  </div>
+  <!--Switchery Js-->
+    <script src="{{ url_for('static', filename='assets/plugins/switchery/js/switchery.min.js')}}"></script>
+    <script>
+      var elems = Array.prototype.slice.call(document.querySelectorAll('.js-switch'));
+      $('.js-switch').each(function() {
+            new Switchery($(this)[0], $(this).data());
+       });
+    </script>
+
+    <!--Bootstrap Switch Buttons-->
+    <script src="{{ url_for('static', filename='assets/plugins/bootstrap-switch/bootstrap-switch.min.js')}}"></script>
+    <script>
+    $(".bt-switch input[type='checkbox'], .bt-switch input[type='radio']").bootstrapSwitch();
+    var radioswitch = function() {
+        var bt = function() {
+            $(".radio-switch").on("switch-change", function() {
+                $(".radio-switch").bootstrapSwitch("toggleRadioState")
+            }), $(".radio-switch").on("switch-change", function() {
+                $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck")
+            }), $(".radio-switch").on("switch-change", function() {
+                $(".radio-switch").bootstrapSwitch("toggleRadioStateAllowUncheck", !1)
+            })
+        };
+        return {
+            init: function() {
+                bt()
+            }
+        }
+    }();
+    $(document).ready(function() {
+        radioswitch.init()
+    });
+    </script>
+
+{% endblock %}

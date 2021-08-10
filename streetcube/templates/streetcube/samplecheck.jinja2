@@ -1,0 +1,191 @@
+{% include "include/page-header.jinja2" %}
+<style>
+.button {
+  background-color: #4CAF50;
+  /* Green */
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+}
+
+.btn {
+  background: #4caf50;
+  border-radius: 0;
+}
+</style>
+<section class="bg-dark2">
+  <h5 class="text-center pt-3 text-green"><b>GAZEBO APPLICATION FORM</b></h5>
+  <div class="text-center"> <img width="100" src="{{url_for('static', filename='img/icons/cube.svg')}}"> </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-12">
+        <div class="form-box mt-2">
+          <h6 class="text-center"><b>Street Cube Menu Proposal & Sustainability Declarations</b></h6>
+          
+            <button class="btn btn-md btn-primary float-right " id="addBtn" type="button"> Add new Row </button>
+            <br class="clearfix">
+            <div class="form-group mt-4">
+              <table class="table table-dark table-striped" id="myTable">
+                <thead>
+                  <tr>
+                    <th> Product Name </th>
+                    <th> Organic Produce</th>
+                    <th> Seasonal Produce</th>
+                    <th> Locally Grown/Sourced(100miles) </th>
+                    <th> Zero Plastic</th>
+                    <th>Zero waste to Landfill </th>
+                    <th>Vegetable/ Meat Ratio </th>
+                    <th> Nutritional Content </th>
+                    <th> Non -Sugar Based Drinks</th>
+                    <th> Allergy Rating</th>
+                    <th> Non-Dairy Ingredients</th>
+                    <th> Total Sustainbillity Score</th>
+                  </tr>
+                </thead>
+                <tbody id="tbody">
+                  <tr>
+                    <form action="" method="POST" name="checkForm">
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                    </form>
+                  </tr>
+                  
+                </tbody>
+              </table>
+
+            </div>
+            <div class="text-right">
+                    <input type ="button" onclick="average()" value="Run Algo" class="button">
+                    &nbsp;&nbsp;<input type ="submit"  value="Continue" class="button">
+            </div>
+            <br>
+            <br> </div>
+        <div class="col-md-3"></div>
+      </div>
+    </div>
+  </div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js">
+</script>
+<script>
+function validateNumber(e) {
+  const pattern = /^[0-9]$/;
+  return pattern.test(e.key)
+}
+
+function changeHandler(val) {
+  if(Number(val.value) > 100) {
+    val.value = 100
+  }
+}
+</script>
+<script>
+$(document).ready(function() {
+  // Denotes total number of rows 
+  var rowIdx = 1;
+  // jQuery button click event to add a row 
+  $('#addBtn').on('click', function() {
+    // Adding a row inside the tbody. 
+    $('#tbody').append(`<tr id="R${++rowIdx}"> 
+
+            
+             <td class="row-index text-center"> 
+             <p>
+                  <select class="opts" name="choose_product">
+                    {% set default_value ='choose_product'%}
+                    {% for prdt in prod_list %}
+                    <option value="{{prdt.products}}">{{prdt.products}}</option>
+                    {%endfor%}
+                  </select>
+                </p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="organic_produce" id="p1_${rowIdx}" value="" onkeypress="return validateNumber(event)" onchange="changeHandler(this)"> </p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="seasonal_produce" id="p2_${rowIdx}" value="" onkeypress="return validateNumber(event)" onchange="changeHandler(this)"></p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="locally_grown" id="p3_${rowIdx}" onkeypress="return validateNumber(event)" value="" onchange="changeHandler(this)"></p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="zero_plastic" id="p4_${rowIdx}" value=""  onkeypress="return validateNumber(event)" onchange="changeHandler(this)"></p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="zero_waste_to_landfill" id="p5_${rowIdx}" value="" onkeypress="return validateNumber(event)" onchange="changeHandler(this)"></p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="vegetable_meat_ratio" id="p6_${rowIdx}" value=""onkeypress="return validateNumber(event)" onchange="changeHandler(this)"></p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="nutritional_content" id="p7_${rowIdx}"  value="" onkeypress="return validateNumber(event)" onchange="changeHandler(this)"></p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="non_sugar_drinks" id="p8_${rowIdx}"  value="" onkeypress="return validateNumber(event)" onchange="changeHandler(this)"></p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="allergy_rating" id="p9_${rowIdx}" value="" onkeypress="return validateNumber(event)" onchange="changeHandler(this)"></p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="non_diary_drinks" id="p10_${rowIdx}" value=""  onkeypress="return validateNumber(event)" onchange="changeHandler(this)"></p> 
+             </td> 
+              <td class="row-index text-center"> 
+             <p><input type="text" name="total_sus_score" id="avg_${rowIdx}" value="" placeholder="Total Score"></p> 
+             </td> 
+             
+              <td class="text-center"> 
+                <button class="btn btn-danger remove"
+                  type="button">Remove</button> 
+                </td> 
+              </tr>`);
+  });
+  // jQuery button click event to remove a row. 
+  $('#tbody').on('click', '.remove', function() {
+    // Getting all the rows next to the row 
+    // containing the clicked button 
+    var child = $(this).closest('tr').nextAll();
+    // Iterating across all the rows  
+    // obtained to change the index 
+    child.each(function() {
+      // Getting <tr> id. 
+      var id = $(this).attr('id');
+      // Getting the <p> inside the .row-index class. 
+      var idx = $(this).children('.row-index').children('p');
+      // Gets the row number from <tr> id. 
+      var dig = parseInt(id.substring(1));
+      // Modifying row index. 
+      idx.html(`Row ${dig - 1}`);
+      // Modifying row id. 100766Meows by 1. 
+    rowIdx--;
+  });
+});
+</script>
+<script type "text/javascript">
+function average() {
+  var rowCount = $('#myTable tr').length;
+  //alert(rowCount);
+  for(var i = 1; i < rowCount; i++) {
+    var a = parseInt(document.getElementById("p1_" + i).value);
+    var b = parseInt(document.getElementById("p2_" + i).value);
+    var c = parseInt(document.getElementById("p3_" + i).value);
+    var d = parseInt(document.getElementById("p4_" + i).value);
+    var e = parseInt(document.getElementById("p5_" + i).value);
+    var f = parseInt(document.getElementById("p6_" + i).value);
+    var g = parseInt(document.getElementById("p7_" + i).value);
+    var h = parseInt(document.getElementById("p8_" + i).value);
+    var t = parseInt(document.getElementById("p9_" + i).value);
+    var j = parseInt(document.getElementById("p10_" + i).value);
+    var afinal = ((a + b + c + d + e + f + g + h + t + j) / 10);
+    //document.getElementById('avg_'+i).value=afinal;
+    $('#avg_' + i).val(afinal);
+    afinal = 0;
+    console.log('Algorithm Running')
+  }
+}
+</script> {% include "include/page-footer.jinja2" %}

@@ -1,0 +1,29 @@
+sbAg$2FH
+139.59.224.8
+
+
+ reader.onload = function (e) {
+
+
+                /*
+                $.ajax({
+                    type: 'POST',
+                    url: '/custom/send/message',
+                    data: {
+                        sender_id: sender_id,
+                        chat_msg: e.target.result,
+                        is_prem: 0,
+                        paid_amt: 20.00,
+                        user_id: user_id,
+                        member_id:member_id,
+                        model_id: "{{ current_user.id }}",
+
+                    },
+                    success: function(response) {
+                        content.html(response);
+                    }
+                });
+                */
+            };
+
+https://www.youtube.com/watch?v=i5KP1D2iLIo&list=PLNQu32qLj0W372UQjUd3XX8-XDQNaiPuK

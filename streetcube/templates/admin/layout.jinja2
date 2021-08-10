@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <meta name="description" content=""/>
+  <meta name="author" content=""/>
+  <title>StreetCube - Admin</title>
+  <!--favicon-->
+  <link rel="icon" href="{{ url_for('static', filename='images/logo/logo.png')}}" type="image/x-icon">
+    <link href="{{url_for('static', filename='dist/filepond.css')}}" rel="stylesheet" />
+    <link href="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.css" rel="stylesheet">
+    <link href="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css" rel="stylesheet">
+  <!-- simplebar CSS-->
+  <link href="{{ url_for('static', filename='assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet"/>
+  <!-- Bootstrap core CSS-->
+  <link href="{{ url_for('static', filename='assets/css/bootstrap.min.css')}}" rel="stylesheet"/>
+  <!--Data Tables -->
+  <link href="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/css/dataTables.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
+  <link href="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/css/buttons.bootstrap4.min.css')}}" rel="stylesheet" type="text/css">
+  <!-- animate CSS-->
+  <link href="{{ url_for('static', filename='assets/css/animate.css')}}" rel="stylesheet" type="text/css"/>
+  <!-- Icons CSS-->
+  <link href="{{ url_for('static', filename='assets/css/icons.css')}}" rel="stylesheet" type="text/css"/>
+  <!-- Sidebar CSS-->
+  <link href="{{ url_for('static', filename='assets/css/sidebar-menu.css')}}" rel="stylesheet"/>
+  <!-- Custom Style-->
+  <link href="{{ url_for('static', filename='assets/css/app-style.css')}}" rel="stylesheet"/>
+
+  <!--Select Plugins-->
+  <link href="{{ url_for('static', filename='assets/plugins/select2/css/select2.min.css')}}" rel="stylesheet"/>
+  <!--inputtags-->
+  <link href="{{ url_for('static', filename='assets/plugins/inputtags/css/bootstrap-tagsinput.css')}}" rel="stylesheet" />
+  <!--multi select-->
+  <link href="{{ url_for('static', filename='assets/plugins/jquery-multi-select/multi-select.css')}}" rel="stylesheet" type="text/css">
+  <!--Bootstrap Datepicker-->
+  <link href="{{ url_for('static', filename='assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css')}}" rel="stylesheet" type="text/css">
+  <!--Touchspin-->
+  <link href="{{ url_for('static', filename='assets/plugins/bootstrap-touchspin/css/jquery.bootstrap-touchspin.css')}}" rel="stylesheet" type="text/css">
+  <!-- skins CSS-->
+  <link href="{{ url_for('static', filename='assets/css/skins.css')}}" rel="stylesheet"/>
+      <!--Switchery-->
+  <link href="{{ url_for('static', filename='assets/plugins/switchery/css/switchery.min.css')}}" rel="stylesheet" />
+
+  <link href="{{ url_for('static', filename='assets/plugins/bootstrap-switch/bootstrap-switch.min.css')}}" rel="stylesheet">
+
+    <script src="{{url_for('static', filename='dist/filepond.js')}}"></script>
+    <script src="https://unpkg.com/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-crop/dist/filepond-plugin-image-crop.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-edit/dist/filepond-plugin-image-edit.js"></script>
+<script src="https://unpkg.com/filepond-plugin-image-transform/dist/filepond-plugin-image-transform.js"></script>
+<script src="https://unpkg.com/filepond-plugin-file-validate-type/dist/filepond-plugin-file-validate-type.js"></script>
+<script src="{{ url_for('static', filename='assets/js/jquery.min.js')}}"></script>
+ <script src="{{ url_for('static', filename='dist/jquery.validate.min.js')}}"></script>
+</head>
+
+<body>
+  {% include 'admin/header.jinja2' %}
+
+   {% block body %}  {% endblock %}
+
+
+   {% include 'admin/footer.jinja2' %}
+
+
+  {% block scripts %}
+      <!-- Bootstrap core JavaScript-->
+
+  <script src="{{ url_for('static', filename='assets/js/popper.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/js/bootstrap.min.js')}}"></script>
+
+  <!-- simplebar js -->
+  <script src="{{ url_for('static', filename='assets/plugins/simplebar/js/simplebar.js')}}"></script>
+  <!-- sidebar-menu js -->
+  <script src="{{ url_for('static', filename='assets/js/sidebar-menu.js')}}"></script>
+
+  <!-- Custom scripts -->
+  <script src="{{ url_for('static', filename='assets/js/app-script.js')}}"></script>
+  <!--Data Tables js-->
+  <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/js/jquery.dataTables.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/js/dataTables.bootstrap4.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/js/dataTables.buttons.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/js/buttons.bootstrap4.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/js/jszip.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/js/pdfmake.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/js/vfs_fonts.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/js/buttons.html5.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/js/buttons.print.min.js')}}"></script>
+  <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datatable/js/buttons.colVis.min.js')}}"></script>
+  <!--Bootstrap Datepicker Js-->
+    <script src="{{ url_for('static', filename='assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js')}}"></script>
+
+
+
+  <!--Bootstrap Touchspin Js-->
+    <script src="{{ url_for('static', filename='assets/plugins/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js')}}"></script>
+    <script src="{{ url_for('static', filename='assets/plugins/bootstrap-touchspin/js/bootstrap-touchspin-script.js')}}"></script>
+
+    <!--Select Plugins Js-->
+    <script src="{{ url_for('static', filename='assets/plugins/select2/js/select2.min.js')}}"></script>
+    <!--Inputtags Js-->
+    <script src="{{ url_for('static', filename='assets/plugins/inputtags/js/bootstrap-tagsinput.js')}}"></script>
+
+
+{#<script src="{{ url_for('static', filename='assets/plugins/jquery-validation/js/jquery.validate.min.js')}}"></script>#}
+
+
+
+    <script>
+     $(document).ready(function() {
+      //Default data table
+       $('#default-datatable').DataTable();
+
+
+       var table = $('#example').DataTable( {
+        lengthChange: false,
+        buttons: [ 'copy', 'excel', 'pdf', 'print', 'colvis' ]
+      } );
+
+     table.buttons().container()
+        .appendTo( '#example_wrapper .col-md-6:eq(0)' );
+
+      } );
+
+
+
+    </script>
+
+      <script>
+        let  pub_lib_insu = false;
+        let c_19risk_asses = false;
+        let food_certi = false;
+
+        $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        })
+
+            FilePond.registerPlugin(
+                FilePondPluginImagePreview,
+
+                FilePondPluginFileValidateType
+            );
+			const inputElementg = document.querySelector("#pub_lib_insu");
+			const pondgallery = FilePond.create(inputElementg, {
+			    allowMultiple:true,
+                allowImagePreview:true,
+				allowFileTypeValidation:true,
+				acceptedFileTypes:['image/jpg','image/jpeg','image/png','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+				allowReorder: true,
+				allowReplace: true,
+				name: 'pub_lib_insu',
+				instantUpload: true,
+				onaddfile: () => {
+					console.log('add');
+				},
+				onremovefile: () => {
+					console.log('remove');
+				},
+				server: {
+					  process: {
+							url: "/admin/upload/documents",
+							method: 'POST',
+							withCredentials: false,
+							headers: {},
+							onload: (response) => {
+								response = JSON.parse(response);
+                                console.log(response);
+                                if(response.status==200){
+
+                                  let ft = '<input type ="hidden" name="pub_lib_insu" value =  "'+response.pub_file_path+'"/>';
+
+                                  $('#doc_d').append(ft);
+
+                                }
+                                //alert(response.message);
+                        	},
+							onerror: console.log,
+							ondata: null
+					  },
+				}
+			});
+
+			const inputElementrisk = document.querySelector("#c_19risk_asses");
+			const pondgalleryrisk = FilePond.create(inputElementrisk, {
+			    allowMultiple:true,
+                allowImagePreview:true,
+				allowFileTypeValidation:true,
+				acceptedFileTypes:['image/jpg','image/jpeg','image/png','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+				allowReorder: true,
+				allowReplace: true,
+				name: 'c_19risk_asses',
+				instantUpload: true,
+				onaddfile: () => {
+					console.log('add');
+				},
+				onremovefile: () => {
+					console.log('remove');
+				},
+				server: {
+					  process: {
+							url: "/admin/upload/documents",
+							method: 'POST',
+							withCredentials: false,
+							headers: {},
+							onload: (response) => {
+								response = JSON.parse(response);
+								if(response.status==200){
+                                  let ft = "<input type ='hidden' name='c_19risk_asses' value =  '"+response.c_file_path+"' />";
+
+                                  $('#doc_d').append(ft);
+                                }
+                                //console.log(response);
+                                //alert(response.message);
+                        	},
+							onerror: console.log,
+							ondata: null
+					  },
+				}
+			});
+			const inputElementfc = document.querySelector("#food_certi");
+			const pondgalleryfc = FilePond.create(inputElementfc, {
+			    allowMultiple:true,
+                allowImagePreview:true,
+				allowFileTypeValidation:true,
+				acceptedFileTypes:['image/jpg','image/jpeg','image/png','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+				allowReorder: true,
+				allowReplace: true,
+				name: 'food_certi',
+				instantUpload: true,
+				onaddfile: () => {
+					console.log('add');
+				},
+				onremovefile: () => {
+					console.log('remove');
+				},
+				server: {
+					  process: {
+							url: "/admin/upload/documents",
+							method: 'POST',
+							withCredentials: false,
+							headers: {},
+							onload: (response) => {
+								response = JSON.parse(response);
+								if(response.status==200){
+                                  let ft = "<input type ='hidden' name='food_certi' value =  '"+response.f_file_path+"' />";
+
+                                  $('#doc_d').append(ft);
+                                }
+                                //console.log(response);
+                                //alert(response.message);
+                        	},
+							onerror: console.log,
+							ondata: null
+					  },
+				}
+			});
+
+
+    </script>
+
+
+    
+ {% endblock %}
+
+</body>
+</html>

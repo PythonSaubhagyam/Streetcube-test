@@ -1,0 +1,63 @@
+$("#submut-btn").attr('type','button');
+                 $("#submut-btn").text('Please wait..');
+
+
+add_new_post
+
+
+
+            if(posttxtfield!=='' || vidFileLength!==0)
+            {
+              $.ajax({
+                type: "POST",
+                url: "add_new_post",
+                data: dataString,
+                success: function(){
+                 $('#success').fadeIn(200).show();
+                 $('#error').fadeOut(200).hide();
+                }
+              });
+            }
+
+
+
+ <div class="text-center mt-2" id="error"></div>
+                <div class="text-center mt-2" id="success"></div>
+
+
+
+
+
+$(document).ready(function(){
+	var post_txt = $('#postpv').val()
+	var post_file = $('#fileUpload').val()
+
+	
+        var dataString = 'post_txt='+ post_txt + '&post_file='+ post_email;
+      
+	if(post_txt==''){
+		alert('Please enter post and video text');
+	}
+	else if(post_file==0){
+		alert('Please upload video');
+	}
+	else{
+		$.ajax({
+			type:"POST",
+			url:"add_new_post",
+			data: dataString,
+			
+		});
+		.done(function() {
+                	
+            	})
+		.fail(function() {
+                	
+           	});
+            	
+	}
+	event.preventDefault();
+});
+
+
+# 

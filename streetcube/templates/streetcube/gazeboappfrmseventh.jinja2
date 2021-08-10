@@ -1,0 +1,149 @@
+{% include "include/page-header.jinja2" %}
+
+<section class="bg-dark2">
+    <h5 class="text-center pt-3 text-green"><b>GAZEBO APPLICATION FORM</b></h5>
+    <div class="text-center">
+		<img width="100" src="{{url_for('static', filename='img/icons/cube.svg')}}">
+	</div>
+	<div class="container">
+	    <div class="row">
+	    <div class="col-md-2"></div>
+	    <div class="col-md-8">
+	       
+
+        <div class="form-box mt-2">
+            <div class="form-group row">
+               
+                <div class="col-sm-4"></div>
+                <div class="col-sm-8">
+                 <h6><b>Part 6: Professional body/ Legal qualification</b></h6>
+                </div>
+            </div>
+            
+            <form action="" method="POST" enctype="multipart/form-data" name="gazeboappfrmseventh">
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                       8. Sustainability Training<br>
+                       <a href="https://www.ncass.org.uk/training/sustainability-training/"> Take The Course Here </a>
+                       <br>
+                       (choose this option if you don’t yet have the certificate - you will be able to complete a short course and get certified)
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="sustain_training_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                        9. HACCP Training<br>
+                       <a href="https://www.ncass.org.uk/training/health-safety-courses/haccp-training/"> Take The Course Here </a>
+                       <br>
+                       (choose this option if you don’t yet have the certificate - you will be able to complete a short course and get certified)
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="haccp_training_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                       10. LPG Gas Safety (if applicable) <br>
+                       br>
+                       <a href="https://www.ncass.org.uk/training/health-safety-courses/lpg-gas-safety/"> Take The Course Here </a>
+                       <br>
+                       (choose this option if you don’t yet have the certificate - you will be able to complete a short course and get certified)
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="lpg_gas_safe_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                       11. Copy of passport
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="copy_of_pass_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                       12. Proof of insurance
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="proof_of_insu_doc">
+                      </div>
+                    </div>
+                </div>
+                <br>
+                <p><small>NB: Acceptable formats are: JPG, JPEG, PNG, PDF The contents should be in readable quality</small></p>
+                <br>
+                
+                <p>Please tell us more about you - we’d like to know about your experience with food,
+professional qualifications and experience, (note; you do not have to have any professional experience)</p>
+                <div class="form-group mb-3">
+                    <textarea class="form-control text-white" rows="3" name="about_exp"></textarea>
+                </div>
+                
+                <div class="text-right">
+                    <button type="submit" class="btn-none"><img height="35" draggable="false" src="{{url_for('static', filename='img/icons/con-btn.svg')}}"></button>
+                </div>
+                
+            </form>
+        </div>
+        <br>
+                <br>
+	    </div>
+     
+	    <div class="col-md-2"></div>
+	</div>
+	</div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"> </script>
+<script>
+
+// Wait for the DOM to be ready
+$(function() {
+  $("form[name='gazeboappfrmseventh']").validate({
+    rules: {
+      
+      sustain_training_doc: "required",
+      haccp_training_doc: "required",
+      lpg_gas_safe_doc: "required",
+      copy_of_pass_doc: "required",
+      proof_of_insu_doc: "required",
+      about_exp: "required",
+      
+     
+    },
+   
+    messages: {
+      sustain_training_doc: "Please upload sustain training doc",
+      haccp_training_doc: "Please upload haccp training doc",
+      lpg_gas_safe_doc: "Please upload lpg gas safe doc",
+      copy_of_pass_doc: "Please upload Copy of passport",
+      proof_of_insu_doc: "Please upload health safety doc",
+      about_exp: "Please enter your experience",
+     
+      
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+
+{% include "include/page-footer.jinja2" %}

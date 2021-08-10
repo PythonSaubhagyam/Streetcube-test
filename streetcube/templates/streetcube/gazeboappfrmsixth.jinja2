@@ -1,0 +1,172 @@
+{% include "include/page-header.jinja2" %}
+
+<section class="bg-dark2">
+    <h5 class="text-center pt-3 text-green"><b>GAZEBO APPLICATION FORM</b></h5>
+    <div class="text-center">
+    <img width="100" src="{{url_for('static', filename='img/icons/cube.svg')}}">
+  </div>
+  <div class="container">
+      <div class="row">
+      <div class="col-md-2"></div>
+      <div class="col-md-8">
+         
+
+        <div class="form-box mt-2">
+            
+                 <h6><b>Part 6: Professional body/ Legal qualification</b></h6>
+                 <br>
+              
+            
+            <form action="" method="POST" enctype="multipart/form-data" name="gazeboappfrmsixth">
+               
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                        1. Proof of NCASS training or equivalent<br>
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="proof_of_ncass_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm" >
+                        2. CV
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="cv_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                       3. Level 2 Food Hygiene<br>
+                        <a href="https://www.ncass.org.uk/training/food-hygiene/level-2/">Take The Course Here</a>
+                        <br>
+                        (choose this option if you don’t yet have the certificate - you will be able to complete a short course and get certified)
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="level_2_hygiene_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                       4. Covid-19 safety training<br>
+                       <a href="https://www.ncass.org.uk/training/covid-19-safety-training/"> Take The Course Here </a>
+                       <br>
+                       (choose this option if you don’t yet have the certificate - you will be able to complete a short course and get certified)
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="covid_19_safety_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                       5. Health & Safety Training<br>
+                       <a href="https://www.ncass.org.uk/training/health-safety-courses/health-safety/"> Take The Course Here </a>
+                       <br>
+                       (choose this option if you don’t yet have the certificate - you will be able to complete a short course and get certified)
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="health_safety_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                       6. First Aid Training<br>
+                       <a href="https://www.ncass.org.uk/training/health-safety-courses/first-aid/"> Take The Course Here </a>
+                       <br>
+                       (choose this option if you don’t yet have the certificate - you will be able to complete a short course and get certified)
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="first_aid_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                <div class="form-group row">
+                    <label for="colFormLabelSm" class="col-sm-6 col-form-label text-left col-form-label-sm">
+                       7. Fire Extinguisher Essentials<br>
+                       <a href="https://www.ncass.org.uk/training/health-safety-courses/fire-extinguisher/"> Take The Course Here </a>
+                       <br>
+                       (choose this option if you don’t yet have the certificate - you will be able to complete a short course and get certified)
+                    </label>
+                    <div class="col-sm-6">
+                      <div class="form-group">
+                        <input type="file" class="form-control-file border-0" id="" name="fire_extinguisher_doc">
+                      </div>
+                    </div>
+                </div>
+                
+                
+                <p><small>NB: Acceptable formats are: JPG, JPEG, PNG, PDF The contents should be in readable quality</small></p>
+                
+                
+                
+                
+                
+                <div class="text-right">
+                    <button type="submit" class="btn-none"><img height="35" draggable="false" src="{{url_for('static', filename='img/icons/con-btn.svg')}}"></button>
+                </div>
+                
+            </form>
+        </div>
+        <br>
+                <br>
+      </div>
+      <p class="text-danger text-center"> {{msg}} </p>
+      <div class="col-md-2"></div>
+  </div>
+  </div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"> </script>
+<script>
+
+// Wait for the DOM to be ready
+$(function() {
+  $("form[name='gazeboappfrmsixth']").validate({
+    rules: {
+      
+      proof_of_ncass_doc: "required",
+      cv_doc: "required",
+      level_2_hygiene_doc: "required",
+      covid_19_safety_doc: "required",
+      health_safety_doc: "required",
+      first_aid_doc: "required",
+      fire_extinguisher_doc: "required",
+     
+     
+    },
+   
+    messages: {
+      proof_of_ncass_doc: "Please upload proof of ncass doc",
+      cv_doc: "Please upload cv doc",
+      level_2_hygiene_doc: "Please upload level 2 hygiene doc",
+      covid_19_safety_doc: "Please upload covid 19 safety doc",
+      health_safety_doc: "Please upload health safety doc",
+      first_aid_doc: "Please upload first aid doc",
+      fire_extinguisher_doc: "Please upload fire extinguisher doc",
+      
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+
+{% include "include/page-footer.jinja2" %}

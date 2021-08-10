@@ -1,0 +1,146 @@
+{% extends 'admin/layout.jinja2' %}
+{% block body %}
+    <div class="clearfix"></div>
+
+  <div class="content-wrapper">
+    <div class="container-fluid">
+
+      <!--Start Dashboard Content-->
+
+     <div class="row mt-3">
+       <div class="col-12 col-lg-6 col-xl-3">
+         <div class="card">
+           <div class="card-body">
+              <h5 class="mb-0">{{ total_ueser }}<span class="float-right"><i class="fa fa-user-circle-o" aria-hidden="true"></i></span></h5>
+                <div class="progress my-3" style="height:3px;">
+                   <div class="progress-bar gradient-deepblue" style="width:55%"></div>
+                </div>
+              <p class="mb-0 small-font">Total User <span class="float-right"><i class="zmdi zmdi-long-arrow-up"></i></span></p>
+            </div>
+         </div>
+       </div>
+       <div class="col-12 col-lg-6 col-xl-3">
+         <div class="card">
+           <div class="card-body">
+              <h5 class="mb-0">£ {{ amt }}<span class="float-right"><i class="fa fa-usd"></i></span></h5>
+                <div class="progress my-3" style="height:3px;">
+                   <div class="progress-bar gradient-orange" style="width:55%"></div>
+                </div>
+              <p class="mb-0 small-font">Total Income <span class="float-right"><i class="zmdi zmdi-long-arrow-up"></i></span></p>
+            </div>
+         </div>
+       </div>
+       <div class="col-12 col-lg-6 col-xl-3">
+         <div class="card">
+            <div class="card-body">
+              <h5 class="mb-0">{{ total_order }}<span class="float-right"><i class="fa fa-eye"></i></span></h5>
+                <div class="progress my-3" style="height:3px;">
+                   <div class="progress-bar gradient-ohhappiness" style="width:55%"></div>
+                </div>
+              <p class="mb-0 small-font">Total Order<span class="float-right"><i class="zmdi zmdi-long-arrow-up"></i></span></p>
+            </div>
+         </div>
+       </div>
+       <div class="col-12 col-lg-6 col-xl-3">
+         <div class="card">
+            <div class="card-body">
+              <h5 class="mb-0">{{ contact }}<span class="float-right"><i class="fa fa-phone-square" aria-hidden="true"></i></span></h5>
+                <div class="progress my-3" style="height:3px;">
+                   <div class="progress-bar gradient-ibiza" style="width:55%"></div>
+                </div>
+              <p class="mb-0 small-font">Total Contacts<span class="float-right"><i class="zmdi zmdi-long-arrow-up"></i></span></p>
+            </div>
+         </div>
+       </div>
+       <div class="col-12 col-lg-6 col-xl-3">
+         <a href="{{ url_for('admin.dashboard') }}">
+         <div class="card">
+            <div class="card-body text-center">
+               <h2><i class="fa fa-home fa-3x"></i></h2>
+               <p class="mb-0 small-font">StreetCubes</p>
+            </div>
+         </div>
+          </a>
+       </div>
+         <div class="col-12 col-lg-6 col-xl-3">
+         <div class="card">
+            <div class="card-body text-center">
+                <h2><i class="fa fa-database fa-3x" aria-hidden="true"></i></h2>
+               <p class="mb-0 small-font">Database </p>
+            </div>
+         </div>
+       </div>
+         <div class="col-12 col-lg-6 col-xl-3">
+         <a href="{{ url_for('admin.slot_info') }}">
+         <div class="card">
+            <div class="card-body text-center">
+                <h2><i class="fa fa-cogs fa-3x" aria-hidden="true"></i></h2>
+               <p class="mb-0 small-font">Settings</p>
+            </div>
+         </div>
+         </a>
+       </div>
+
+         <div class="col-12 col-lg-6 col-xl-3">
+         <a href="{{ url_for('admin.access') }}">
+         <div class="card">
+            <div class="card-body text-center">
+                <h2><i class="fa fa-wrench fa-3x" aria-hidden="true"></i></h2>
+               <p class="mb-0 small-font">Admin & Access All Areas</p>
+            </div>
+         </div>
+         </a>
+       </div>
+         <div class="col-12 col-lg-6 col-xl-3">
+         <a href="{{ url_for('admin.show_slot_book_list') }}">
+         <div class="card">
+            <div class="card-body text-center">
+                <h2><i class="fa fa-truck fa-3x" aria-hidden="true"></i></h2>
+               <p class="mb-0 small-font">Ordering</p>
+            </div>
+         </div>
+         </a>
+       </div>
+          <div class="col-12 col-lg-6 col-xl-3">
+         <div class="card">
+            <div class="card-body text-center">
+                <h2><i class="fa fa-bar-chart fa-3x" aria-hidden="true"></i></h2>
+               <p class="mb-0 small-font">Stats & Analytics</p>
+            </div>
+         </div>
+       </div>
+          <div class="col-12 col-lg-6 col-xl-3">
+          <a href="{{ url_for('admin.slot_report') }}">
+         <div class="card">
+            <div class="card-body text-center">
+                <h2><i class="fa fa-building fa-3x" aria-hidden="true"></i></h2>
+               <p class="mb-0 small-font">Orders & Live Monitoring</p>
+            </div>
+         </div>
+          </a>
+       </div>
+           <div class="col-12 col-lg-6 col-xl-3">
+         <div class="card">
+            <div class="card-body text-center">
+                <h2><i class="fa fa-facebook-square fa-3x" aria-hidden="true"></i></h2>
+               <p class="mb-0 small-font">Social Media</p>
+            </div>
+         </div>
+       </div>
+
+     </div><!--End Row-->
+      <!--End Dashboard Content-->
+<!--start overlay-->
+	  <div class="overlay toggle-menu"></div>
+	<!--end overlay-->
+    </div>
+    <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+{% endblock %}
+
+
+

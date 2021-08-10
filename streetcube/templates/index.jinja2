@@ -1,0 +1,83 @@
+{% extends 'layout/layout.jinja2' %}
+{% block body %}
+<section class="index-bg">
+    <div class="container text-center">
+        <img width="200" src="{{ url_for('static', filename='images/logo/logo.png') }}">
+        <h1 class="text-white mt-5 ib_title">Markets</h1>
+    </div>
+</section>
+<section class="index-bg2">
+    <div class="container text-center text-white">
+        <h3>We are open</h3>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h6>Our weekend farmers markets are open as usual so you can still rely on them for a huge range of fresh produce from local farms and producers.</h6>
+                <h6>Shopping in the great outdoors for fresh seasonal food is fun and safe. Come along this weekend and see what you have been missing. Our markets have lots of space for you to shop in comfort and help you to shop locally . You can find your nearest market here.</h6>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+</section>
+<section class="index-bg3">
+    <div class="container text-center text-white">
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <h6 class="mb-3 mt-3">All the local organic farmers and food producers <br>
+                you will find at the market.</h6>
+                <br>
+                <a class="btn-white" href="#">Our Producers</a>
+            </div>
+            <div class="col-md-6 mb-3">
+                <h6 class="mb-3 mt-3">Check out our rules then let us know what <br>
+                you would like to sell.</h6>
+                <br>
+                <a class="btn-white" href="{{url_for('main.join_now')}}">Get a Stall</a>
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+    <div class="container">
+        <div class="text-center mt-5 mb-4">
+            <h3>Instagram <spna class="text-danger">feed</spna></h3>
+        </div>
+        <div id="instagram-feed2" class="instagram_feed"></div>
+        <div class="section_code py-3"></div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}
+
+{% block script %}
+ <script>
+        (function ($) {
+            $('.nav-tabs').responsiveTabs();
+        })(jQuery);
+    </script>
+
+<script type="text/javascript" src="{{ url_for('static', filename='boots/plugins/instagram-feed/jquery.instagramFeed.min.js')}}"></script>
+<script>
+    (function($){
+        $(window).on('load', function(){
+            $.instagramFeed({
+                'username': 'streetcubewandsworth',
+                'container': "#instagram-feed2",
+                'display_profile': false,
+                'display_biography': false,
+                'display_gallery': true,
+                'callback': null,
+                'styling': true,
+                'items': 8,
+                'items_per_row': 4,
+                'margin': 1 
+            });
+        });
+    })(jQuery);
+</script>
+{% endblock %}
+

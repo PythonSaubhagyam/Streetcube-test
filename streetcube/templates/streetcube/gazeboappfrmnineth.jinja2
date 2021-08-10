@@ -1,0 +1,143 @@
+{% include "include/page-header.jinja2" %}
+
+<section class="bg-dark2">
+    <h5 class="text-center pt-3 text-green"><img width="30" class="mr-3" src="{{url_for('static', filename='img/icons/cube.svg')}}"><b>GAZEBO APPLICATION FORM</b></h5>
+ <!--   <div class="text-center">-->
+	<!--	<img width="100" src="img/icons/cube.svg">-->
+	<!--</div>-->
+	<div class="container">
+	    <div class="row">
+	    <div class="col-md-3"></div>
+	    <div class="col-md-6">
+	       
+
+        <div class="form-box mt-2">
+            
+                 <h6><b>Part 8: Business</b></h6>
+              
+            
+            <form action="" method="POST" name="gazeboappfrmnineth">
+                
+                
+                <p><i>About business</i></p>
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm text-left">Do you have a company name?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="have_company_name" value="{{ga_prt_9th_up.have_company_name}}">
+                </div>
+              
+                <div class="form-group">
+                  <label for="colFormLabelSm" class="col-form-label col-form-label-sm text-left">Are you VAT registered?</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="is_vat" id="yesCheck" >
+                  <label class="form-check-label" for="inlineRadio1">YES</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="is_vat" id="noCheck" >
+                  <label class="form-check-label" for="inlineRadio2">NO</label>
+                </div>
+                 
+                <div class="form-group">
+                  <label for="colFormLabelSm" class="col-form-label col-form-label-sm text-left" id="vat_reg">Enter VAT number : </label>
+                  <input type="text" class="form-control form-control-sm" id="vat_reg" name="vat_reg" value="{{ga_prt_9th_up.vat_reg}}">
+                </div>
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm text-left">Do you intend to use 3rd party delivery agents? (such as ‘Deliveroo’, ‘Uber Eats’ etc..)</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="delivery_agents" value="{{ga_prt_9th_up.delivery_agents}}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm text-left">Please tell us anything additionally that you would like us to know - about you or your business</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="about_your_business"  value="{{ga_prt_9th_up.about_your_business}}" >
+                </div>
+                <p class="m-0 p-0"><i>Time</i></p>
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm text-left">What length of trading term will suit you best?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="length_of_trading" value="{{ga_prt_9th_up.length_of_trading}}">
+                </div>
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm text-left">What is your Desired commence / start-time?</label>
+                    <input type="text" id="datepicker" class="form-control form-control-sm" name="desired_commence" value="{{ga_prt_9th_up.desired_commence}}">
+                </div>
+                <div class="text-right">
+                    <button type="submit" class="btn-none"><img height="35" draggable="false" src="{{url_for('static', filename='img/icons/con-btn.svg')}}"></button>
+                </div>
+                
+            </form>
+           
+        </div>
+
+        <br>
+                <br>
+	    </div>
+        
+	    <div class="col-md-3"></div>
+	</div>
+	</div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"> </script>
+
+
+
+ <script>
+    today = new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate()+1);
+    $('#datepicker').datepicker({
+       minDate: today,
+       format: 'yyyy-mm-dd',
+    });
+</script>
+  
+
+
+
+<script>
+  
+  $('#vat_reg').hide();
+
+  $('#yesCheck').click(function() {
+    $('#vat_reg').show();
+  });
+  $('#noCheck').click(function() {
+      $('#vat_reg').hide();
+  });
+
+
+
+</script>
+
+<script>
+
+// Wait for the DOM to be ready
+$(function() {
+  $("form[name='gazeboappfrmnineth']").validate({
+    rules: {
+      
+      have_company_name: "required",
+      vat_reg: "required",
+      delivery_agents: "required",
+      about_your_business: "required",
+      length_of_trading: "required",
+      desired_commence: "required",
+    
+     
+    },
+   
+    messages: {
+      have_company_name: "Please enter your any company name",
+      vat_reg: "Please enter vat reg",
+      delivery_agents: "Please enter delivery agents",
+      about_your_business: "Please enter about your business",
+      length_of_trading: "Please enter length of trading",
+      desired_commence: "Please enter desired commence",
+     
+     
+      
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+
+{% include "include/page-footer.jinja2" %}

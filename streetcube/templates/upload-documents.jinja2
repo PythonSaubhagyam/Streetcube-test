@@ -1,0 +1,196 @@
+{% extends 'layout/layout.jinja2' %}
+{% block body %}
+<section class="page-bg">
+	<div class="container text-center">
+		<img width="150" src="{{ url_for ('static' ,filename='images/logo/logo.png')}}">
+		<h1 class="text-white mt-5">Upload Documents</h1>
+	</div>
+</section>
+<section class="pt-5 pb-5 bg-silver">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="card">
+					<div class="card-body text-center pt-5 pb-5">
+						<h5>Upload document</h5>
+						<br>
+						<div class="row">
+							<div class="col-md-2"></div>
+                                <div class="col-md-8 text-left">
+                                <form method="post">
+                                    <div>
+                                <label class="mt-4">Public liability insurance</label>
+								<div class="custom-filex">
+									<input type="file" id="pub_lib_insu">
+								</div>
+                                    </div>
+                                    <div>
+								<label class="mt-4">Covid-19 risk assessment form</label>
+								<div class="custom-filex">
+									<input type="file"  id="c_19risk_asses">
+								</div>
+                                    </div>
+                                    <div>
+								<label class="mt-4">Food and hygiene certificate</label>
+								<div class="custom-filex">
+									<input type="file" id="food_certi">
+								</div>
+                                    </div>
+
+									<a href="{{ url_for('main.login') }}" class="btn btn-danger nxt_dis">Next</a>
+
+                            </form>
+							</div>
+							<div class="col-md-2"></div>
+
+						</div>
+					</div>
+				
+					
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</section>
+
+<script>
+        let  pub_lib_insu = false;
+        let c_19risk_asses = false;
+        let food_certi = false;
+
+        $(function () {
+        $('[data-toggle="tooltip"]').tooltip()
+        })
+
+            FilePond.registerPlugin(
+                FilePondPluginImagePreview,
+
+                FilePondPluginFileValidateType
+            );
+			const inputElementg = document.querySelector("#pub_lib_insu");
+			const pondgallery = FilePond.create(inputElementg, {
+			    allowMultiple:true,
+                allowImagePreview:true,
+				allowFileTypeValidation:true,
+				acceptedFileTypes:['image/jpg','image/jpeg','image/png','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+				allowReorder: true,
+				allowReplace: true,
+				name: 'pub_lib_insu',
+				instantUpload: true,
+				onaddfile: () => {
+					console.log('add');
+				},
+				onremovefile: () => {
+					console.log('remove');
+				},
+				server: {
+					  process: {
+							url: "/upload/documents/{{ id }}",
+							method: 'POST',
+							withCredentials: false,
+							headers: {},
+							onload: (response) => {
+								response = JSON.parse(response);
+                                console.log(response);
+                                if(response.status==200){
+                                    pub_lib_insu = true;
+                                }
+                                //alert(response.message);
+                        	},
+							onerror: console.log,
+							ondata: null
+					  },
+				}
+			});
+
+			const inputElementrisk = document.querySelector("#c_19risk_asses");
+			const pondgalleryrisk = FilePond.create(inputElementrisk, {
+			    allowMultiple:true,
+                allowImagePreview:true,
+				allowFileTypeValidation:true,
+				acceptedFileTypes:['image/jpg','image/jpeg','image/png','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+				allowReorder: true,
+				allowReplace: true,
+				name: 'c_19risk_asses',
+				instantUpload: true,
+				onaddfile: () => {
+					console.log('add');
+				},
+				onremovefile: () => {
+					console.log('remove');
+				},
+				server: {
+					  process: {
+							url: "/upload/documents/{{ id }}",
+							method: 'POST',
+							withCredentials: false,
+							headers: {},
+							onload: (response) => {
+								response = JSON.parse(response);
+								if(response.status==200){
+                                    c_19risk_asses = true;
+                                }
+                                //console.log(response);
+                                //alert(response.message);
+                        	},
+							onerror: console.log,
+							ondata: null
+					  },
+				}
+			});
+			const inputElementfc = document.querySelector("#food_certi");
+			const pondgalleryfc = FilePond.create(inputElementfc, {
+			    allowMultiple:true,
+                allowImagePreview:true,
+				allowFileTypeValidation:true,
+				acceptedFileTypes:['image/jpg','image/jpeg','image/png','application/pdf','application/msword','application/vnd.openxmlformats-officedocument.wordprocessingml.document'],
+				allowReorder: true,
+				allowReplace: true,
+				name: 'food_certi',
+				instantUpload: true,
+				onaddfile: () => {
+					console.log('add');
+				},
+				onremovefile: () => {
+					console.log('remove');
+				},
+				server: {
+					  process: {
+							url: "/upload/documents/{{ id }}",
+							method: 'POST',
+							withCredentials: false,
+							headers: {},
+							onload: (response) => {
+								response = JSON.parse(response);
+								if(response.status==200){
+                                    food_certi = true;
+                                }
+                                //console.log(response);
+                                //alert(response.message);
+                        	},
+							onerror: console.log,
+							ondata: null
+					  },
+				}
+			});
+
+
+
+
+            $(".nxt_dis").click(function(){
+                if((pub_lib_insu==true) && (c_19risk_asses==true) && (food_certi==true)){
+                    return true;
+                }
+
+                alert("upload all documents is required");
+                return false;
+            });
+
+
+
+    </script>
+
+{% endblock %}
+

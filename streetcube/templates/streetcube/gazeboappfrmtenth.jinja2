@@ -1,0 +1,83 @@
+{% include "include/page-header.jinja2" %}
+
+<section class="bg-dark2">
+    <h5 class="text-center pt-3 text-green"><b>GAZEBO APPLICATION FORM</b></h5>
+    <div class="text-center">
+		<img width="100" src="{{url_for('static', filename='img/icons/cube.svg')}}">
+	</div>
+	<div class="container">
+	    <div class="row">
+	    <div class="col-md-3"></div>
+	    <div class="col-md-6">
+	       
+
+        <div class="form-box mt-2">
+            
+                 <h6><b>Part 8: Business</b></h6>
+              
+            
+            <form action="" method="POST" name="gazeboappfrmtenth">
+                <p><i>Income</i></p>
+               
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm text-left">What would be your proposed daily rental?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="daily_rental" value="{{ga_prt_10th_up.daily_rental}}">
+                </div>
+                
+                
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm text-left">How many clients per day would you ideally need to serve?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="clients_need" value="{{ga_prt_10th_up.clients_need}}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm text-left">What maximum % of turnover would you be prepared to agree to, in addition to the daily rental or the StreetCube?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="turnover" value="{{ga_prt_10th_up.turnover}}">
+                </div>
+                
+                
+                
+                
+                <div class="text-right">
+                    <button type="submit" class="btn-none"><img height="35" draggable="false" src="{{url_for('static', filename='img/icons/con-btn.svg')}}"></button>
+                </div>
+                
+            </form>
+        </div>
+        <br>
+                <br>
+	    </div>
+       
+	    <div class="col-md-3"></div>
+	</div>
+	</div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"> </script>
+<script>
+
+// Wait for the DOM to be ready
+$(function() {
+  $("form[name='gazeboappfrmtenth']").validate({
+    rules: {
+      
+      daily_rental: "required",
+      clients_need: "required",
+      turnover: "required",
+     
+    },
+   
+    messages: {
+      daily_rental: "Please enter your any company name",
+      clients_need: "Please enter vat reg",
+      turnover: "Please enter delivery agents",
+    
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+
+<?php include('page-footer.php'); ?>

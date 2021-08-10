@@ -1,0 +1,250 @@
+{% extends 'admin/layout.jinja2' %}
+{% block body %}
+<div class="clearfix"></div>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+        <div class="row pt-2 pb-2">
+        <div class="col-sm-12">
+  		    <h4 class="page-title">User Registration</h4>
+	      </div>
+     </div>
+     <form  id="signupForm" method="POST" autocomplete="off">
+
+
+          <div id="doc_d">
+
+          </div>
+
+       <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+
+                <h4 class="form-header text-uppercase">
+                  <i class="fa fa-address-book-o"></i>
+                   User Profile
+                </h4>
+                <div class="form-group row">
+                  <label for="input-10" class="col-sm-2 col-form-label">User Name</label>
+                  <div class="col-sm-10">
+                    <input type="text" class="form-control" id="uname" name="uname" >
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="input-pass" class="col-sm-2 col-form-label">Password</label>
+                  <div class="col-sm-10">
+                    <input type="password" class="form-control" id="input-pass" name="password">
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label for="input-pass" class="col-sm-2 col-form-label">Assign Role</label>
+                  <div class="col-sm-10">
+
+                    <select class="form-control" id="basic-select" name="u_role">
+                         {% for c in roleList %}
+                         <OPTION value={{c.id}}>{{c.role_title}}</option>
+                        {% endfor %}
+                    </select>
+                  </div>
+                </div>
+
+                <h4 class="form-header text-uppercase">
+                <i class="fa fa-envelope-o"></i>
+                  Contact Info
+                </h4>
+
+                <div class="form-group row">
+                  <label for="input-14" class="col-sm-2 col-form-label">E-mail</label>
+                  <div class="col-sm-4">
+                    <input type="email" class="form-control" id="input-14" name="email">
+                  </div>
+                  <label for="input-16" class="col-sm-2 col-form-label">Contact Number</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" id="input-16" name="mobile">
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+
+        <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+                <h4 class="form-header text-uppercase">
+                  <i class="fa fa-user-circle-o"></i>
+                   Trader Details
+                </h4>
+                <div class="form-group row">
+                  <label for="input-1" class="col-sm-2 col-form-label">Address</label>
+                  <div class="col-sm-4">
+                      <textarea  class="form-control" id="input-1" name="address" ></textarea>
+                  </div>
+                   <label for="input-2" class="col-sm-2 col-form-label">Company Name</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputa" name="c_name">
+                  </div>
+                </div>
+                  <div class="form-group row">
+
+                    <label for="input-2" class="col-sm-2 col-form-label">Brand Name</label>
+                  <div class="col-sm-4">
+                    <input type="text" class="form-control" id="inputb" name="b_name">
+                  </div>
+                  <label for="input-2" class="col-sm-2 col-form-label">Description of services and products</label>
+                  <div class="col-sm-4">
+                     <textarea class="form-control" id="inputd" name="descrip_of_service" ></textarea>
+                  </div>
+
+                </div>
+
+                  <div class="form-group row">
+                  <label for="input-2" class="col-sm-2 col-form-label">Story - how did you start up?</label>
+                  <div class="col-sm-4">
+                      <textarea class="form-control" id="inputg" name="story"></textarea>
+                  </div>
+                </div>
+
+                <h4 class="form-header">
+                <i class="fa fa-file-text-o"></i>
+                  Documents Upload
+                </h4>
+                <div class="form-group row">
+                  <label for="input-8" class="col-sm-2 col-form-label">Public liability insurance</label>
+                  <div class="col-sm-4">
+                      <div class="custom-filex">
+                            <input type="file" class="" id="pub_lib_insu" name="pub_lib_insu">
+                          </div>
+                  </div>
+
+                  <label for="input-8" class="col-sm-2 col-form-label">Covid-19 risk assessment form</label>
+                  <div class="col-sm-4">
+                      <div class="custom-filex">
+                    <input type="file" class="" id="c_19risk_asses" name="c_19risk_asses">
+                      </div>
+                  </div>
+
+
+                </div>
+                <div class="form-group row">
+                  <label for="input-8" class="col-sm-2 col-form-label">Food and hygiene certificate</label>
+                  <div class="col-sm-4">
+                      <div class="custom-filex">
+                    <input type="file" class=""  id="food_certi" name="food_certi">
+                      </div>
+                  </div>
+                </div>
+
+
+                <div class="form-footer">
+                    <button type="reset" class="btn btn-danger"><i class="fa fa-times"></i> CANCEL</button>
+                    <button type="submit" class="btn btn-success" ><i class="fa fa-check-square-o"></i> SAVE</button>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div><!--End Row-->
+
+
+        <!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+     </form>
+    </div>
+    <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+<script>
+        $( document ).ready( function () {
+
+
+        $("#signupForm").validate({
+            rules: {
+                uname: "required",
+                password: "required",
+                u_role: "required",
+                mobile: {
+                    required: true,
+                    digits: true,
+                    minlength: 10,
+                    maxlength: 10
+                },
+                email: {
+                    required: true,
+                    email: true,
+                    remote:{
+                        url: "/admin/check_email",
+                        type:"POST"
+                    }
+                },
+                address: {
+                    required: true,
+                    address: true
+                },
+                c_name: {
+                    required: true,
+                    c_name: true
+                },
+                b_name: {
+                    required: true,
+                    b_name: true
+                },
+                descrip_of_service: {
+                    required: true,
+                    descrip_of_service: true
+                },
+                story: {
+                    required: true,
+                    story: true
+                },
+                pub_lib_insu: {
+                    required: true,
+                    pub_lib_insu: true
+                },
+                c_19risk_asses: {
+                    required: true,
+                    c_19risk_asses: true
+                },
+                food_certi: {
+                    required: true,
+                    food_certi: true
+                },
+                message: {
+                    required: true,
+                    minlength: 50,
+                    maxlength: 200
+                },
+            },
+            messages: {
+                uname: "Please enter your Name",
+                mobile: {
+                    required: "Enter your mobile number",
+                    digits: "Allow only digit",
+                    minlength: "Mobile no should have 10 digits",
+                    maxlength: "Mobile no shuld have 10 digits"
+                },
+                email:{
+                    remote: "Email already in use . Try another email."
+                },
+                message: {
+                    required: "Write your description",
+                    minlength: "Message should be not less than 50 character",
+                    maxlength: "Message should be not more than 200 character"
+                },
+                c_name: "Please enter company name",
+                b_name: "Please enter brand name",
+
+            }
+        });
+          } );
+
+</script>
+{% endblock %}
+
+
+

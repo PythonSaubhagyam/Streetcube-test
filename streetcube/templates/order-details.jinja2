@@ -1,0 +1,77 @@
+{% extends 'layout/layout.jinja2' %}
+{% block body %}
+ <div class="container-fluid mt-4 mb-4 px-5">
+        <div class="row px-5">
+            <div class="col-md-3 px-5 mb-4">
+                <div class="card">
+                    <div class="btn-group-vertical">
+                        <button type="button" class="btn btn-info bg-dark text-white"><a class="text-decoration-none" href="{{url_for('main.dashboard')}}">Profile</a></button>
+                        <button type="button" class="btn btn-info bg-dark text-white"><a class="text-decoration-none" href="{{url_for('main.change_pass')}}">Change password</a></button>
+                        <button type="button" class="btn btn-info bg-dark text-white"><a class="text-decoration-none" href="{{url_for('main.booked_details')}}">Booked Details</a></button>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-9">
+            <div class="text-center">
+              {% with messages = get_flashed_messages(with_categories=true)  %}
+
+                  {% if messages %}
+
+                         {% for category,message in messages %}
+                          <div class ="alert alert-{{ category }} alert-dismissible" role="alert">
+                              <button type="button" class="close" data-dismiss='alert' aria-label="close">
+                                  <span aria-hidden="true">x</span>
+                              </button>
+                              {{message}}
+                          </div>
+                          {% endfor %}
+
+                  {%endif%}
+
+              {% endwith %}
+
+            </div>
+                <div class="card">
+                    <div class="card-body">            
+                        <h5 class="form-header">
+                            <i class="fa fa-table"></i>
+                            Data Exporting
+                        </h5>
+                        <hr>
+                        <div class="table-responsive">
+                              <table id="example" class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Order Id</th>
+                                        <th>Slot</th>
+                                        <th>Amount</th>
+                                        <th>Transaction Id</th>
+                                        <th>Payment Status</th>
+                                        <th>Payment Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {% for or in order %}
+                                    <tr>
+                                      <td>{{ or.id }}</td>
+                                        <td>{{ or.slot }}</td>
+                                        <td>{{ or.amount }}</td>
+                                        <td>{{ or.txn_id }}</td>
+                                        <td>{{ or.payment_status }}</td>
+                                        <td>{{ or.date  }}</td>
+                                        <td>
+                                            <a href="{{ url_for('main.delete',id=or.id) }}" onclick="return confirm('Are You Sure To Delete ?')"><i class="material-icons btn btn-danger" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

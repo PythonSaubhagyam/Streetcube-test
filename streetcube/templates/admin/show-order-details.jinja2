@@ -1,0 +1,63 @@
+{% extends 'admin/layout.jinja2' %}
+{% block body %}
+<div class="clearfix"></div>
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-header"><i class="fa fa-table"></i> Data Exporting</div>
+            <div class="card-body">
+              <div class="table-responsive">
+              <table id="example" class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>Member Name</th>
+                        <th>Slots Choose</th>
+                        <th>Choose Date</th>
+                        <th>Amount</th>
+                        <th>Transaction Id</th>
+                        <th>Payment Status</th>
+                        <th>Payment Response</th>
+                        <th>Create At</th>
+                    </tr>
+                </thead>
+                {% for order in order_data %}
+                <tbody>
+                   
+                    <tr>
+                        <td>{{ order.user_name }}</td>
+                        <td>{{ order.choose_slot }}</td>
+                        <td>{{ order.select_date }}</td>
+                        <td>{{ order.booking_cost }}</td>
+                        <td>{{ order.txn_id }}</td>
+                        <td>{{ order.payment_status }}</td>
+                        <td>{{ order.payment_response }}</td>
+                        <td>{{ order.create_at }}</td>
+
+                    </tr>
+                   
+                </tbody>
+                 {% endfor %}
+            </table>
+            </div>
+            </div>
+          </div>
+        </div>
+      </div><!-- End Row-->
+<!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+    </div>
+    <!-- End container-fluid-->
+
+    </div><!--End content-wrapper-->
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+
+{% endblock %}
+
+
+

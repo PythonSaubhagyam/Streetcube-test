@@ -1,0 +1,138 @@
+{% extends 'streetcube/base.jinja2' %}
+{% block title %}{% endblock %}
+ {% block content %} 
+
+ <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+ 
+ <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+
+<style>
+  
+       
+            .form-group  input {
+                display: block;
+                width: 100%;
+                height: calc(2.25rem + 2px);
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #ffffff;
+                background-color: rgb(255 255 255 / 0%);
+                background-clip: padding-box;
+                border: 2px solid #ced4da;
+                border-radius: 0;
+                transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                outline:0;
+            }
+          
+            .form-control:focus{
+                outline:0;
+                background:none;
+                border-color:white;
+                box-shadow:none;
+            }
+            .form-control::placeholder {
+              color: rgb(255 255 255 / 64%);
+              opacity: 1; /* Firefox */
+            }
+            
+            .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+             color: rgb(255 255 255 / 64%);
+            }
+            
+            .form-control::-ms-input-placeholder { /* Microsoft Edge */
+             color: rgb(255 255 255 / 64%);
+            }
+            .btn{
+                background: #fff;
+                border-radius: 0;
+            }
+            .box_menu {
+                padding: 3rem 3rem 3rem 3rem;
+            }
+    </style>
+            <div class="p-5 logo_area">
+                <img width="120" src="/static/img/logo.png">
+            </div>
+
+            <div class="mt-3 box_menu">
+				<div class="row m-0">
+					<div class="col-md-3">
+						
+					</div>
+					<div class="col-md-6">
+						<form  action="/create/pass" method="POST" id="passForm">
+                          <h4>Please create a password</h4>
+                            <div class="form-group mt-3">
+                            <input type="password" class="form-control" name="pass" id="pass">
+                            </div>
+                            <h4>Confirm password</h4>
+                            <div class="form-group mt-3">
+                            <input type="password" class="form-control" name="cnfpass" id="cnfpass">
+                            </div>
+                            <div class="text-right">
+                             <button type="submit" class="btn" onClick='check();' >Confirm</button>
+                             </div>
+                          
+                        </form>
+                        <span id='message'></span>
+					</div>
+					<div class="col-md-3">
+						
+					</div>
+				</div>
+                <div>
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                        <span>{{ message }}</span>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+                </div>
+			</div>
+
+ 
+ 
+  
+
+{% block javascript %}
+  
+<script>
+
+
+
+
+
+function check() {
+        var validator = $("#passForm").validate({
+            rules: {
+                pass: "required",
+                cnfpass: {
+                    equalTo: "#pass"
+                }
+            },
+            messages: {
+                pass: "Enter Password",
+                cnfpass: " Enter Confirm Password Same as Password"
+            }
+        });
+        if (validator.form()) {
+            //alert('Sucess');
+        }
+    }
+
+
+
+</script> 
+      
+{% endblock %}
+
+
+ {% endblock %} 

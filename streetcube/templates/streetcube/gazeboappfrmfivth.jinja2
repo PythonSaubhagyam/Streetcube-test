@@ -1,0 +1,138 @@
+{% include "include/page-header.jinja2" %}
+
+<section class="bg-dark2">
+    <h5 class="text-center pt-3 text-green"><img width="30" class="mr-3" src="{{url_for('static', filename='img/icons/cube.svg')}}"><b>GAZEBO APPLICATION FORM</b></h5>
+ <!--   <div class="text-center">-->
+	<!--	<img width="100" src="img/icons/cube.svg">-->
+	<!--</div>-->
+	<div class="container">
+	    <div class="row">
+	    <div class="col-md-3"></div>
+	    <div class="col-md-6">
+	       
+
+        <div class="form-box mt-2">
+            
+                 <h6><b>Part 5: Experience</b></h6>
+              
+            
+            <form action="" method="POST" name="gazeboappfrmfivth">
+                <div>
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm">Is this a new project?</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="is_new_project" id="" value="1" {% if ga_prt_5th_up.is_new_project%} checked{%endif%}>
+                  <label class="form-check-label" for="inlineRadio1">YES</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="is_new_project" id="" value="0" {% if not ga_prt_5th_up.is_new_project%} checked{%endif%}>
+                  <label class="form-check-label" for="inlineRadio2">NO</label>
+                </div>
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm">Can your menu be adapted to use sustainable, local, seasonal variations?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="menu_type" value={{ga_prt_5th_up.menu_type}}>
+                </div>
+                <div>
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm">Do you currently operate a;</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="business_operate" id="" value="Street Food Setup" {% if ga_prt_5th_up.business_operate=='Street Food Setup'%} checked {%endif%}>
+                  <label class="form-check-label" for="inlineRadio3">Street Food Setup</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="business_operate" id="" value="Restaurant" {% if ga_prt_5th_up.business_operate=='Restaurant'%} checked {%endif%}>
+                  <label class="form-check-label" for="inlineRadio4">Restaurant</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="business_operate" id="" value="Catering Business" {% if ga_prt_5th_up.business_operate=='Catering Business'%} checked {%endif%}>
+                  <label class="form-check-label" for="inlineRadio5">Catering Business</label>
+                </div>
+               <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm">How many years have you operated a street food set-up?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="operate_yrs" value="{{ga_prt_5th_up.operate_yrs}}">
+                </div>
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm">Where have you operated a street food set up prior?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="street_loc" value="{{ga_prt_5th_up.street_loc}}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm">What is your most popular selling item?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="pop_sel_item" value="{{ga_prt_5th_up.pop_sel_item}}">
+                </div>
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm">What is the average spend per client?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="avg_spent_client" value="{{ga_prt_5th_up.avg_spent_client}}">
+                </div>
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm">How many staff are needed to operate your menu?</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="staff_need" value="{{ga_prt_5th_up.staff_need}}">
+                </div>
+                <div class="form-group">
+                    <label for="colFormLabelSm" class="col-form-label col-form-label-sm">Daily Hours of Operation</label>
+                    <input type="text" class="form-control form-control-sm" id="" name="day_hour_operate" value="{{ga_prt_5th_up.day_hour_operate}}">
+                </div>
+                <div>
+                <label for="colFormLabelSm" class="col-form-label col-form-label-sm">Do you have formal catering qualifications?</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="is_formal_cat_quali" id="" value="1" {% if ga_prt_5th_up.is_formal_cat_quali%} checked{%endif%}>
+                  <label class="form-check-label" for="inlineRadio6">YES</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="is_formal_cat_quali" id="" value="0" {% if not ga_prt_5th_up.is_formal_cat_quali%} checked{%endif%}>
+                  <label class="form-check-label" for="inlineRadio7">NO</label>
+                </div>
+                
+                
+                <div class="text-right">
+                    <button type="submit" class="btn-none"><img height="35" draggable="false" src="{{url_for('static', filename='img/icons/con-btn.svg')}}"></button>
+                </div>
+                
+            </form>
+        </div>
+        <br>
+                <br>
+	    </div>
+      <p class="text-danger text-center"> {{msg}} </p>
+	    <div class="col-md-3"></div>
+	</div>
+	</div>
+</section>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"> </script>
+<script>
+
+// Wait for the DOM to be ready
+$(function() {
+  $("form[name='gazeboappfrmfivth']").validate({
+    rules: {
+      
+      menu_type: "required",
+      operate_yrs: "required",
+      street_loc: "required",
+      pop_sel_item: "required",
+      avg_spent_client: "required",
+      staff_need: "required",
+      day_hour_operate: "required",
+     
+     
+    },
+   
+    messages: {
+      menu_type: "Please enter menu type",
+      operate_yrs: "Please enter operated year",
+      street_loc: "Please enter streetcube location",
+      pop_sel_item: "Please enter popular sell items",
+      avg_spent_client: "Please enter average spent client",
+      staff_need: "Please enter staff need",
+      day_hour_operate: "Please enter day hour operate",
+      
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+
+{% include "include/page-footer.jinja2" %}

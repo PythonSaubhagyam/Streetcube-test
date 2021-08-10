@@ -1,0 +1,130 @@
+{% extends 'layout/layout.jinja2' %}
+{% block body %}
+<section class="page-bg">
+	<div class="container text-center">
+		<img width="150" src="{{ url_for ('static' ,filename='images/logo/logo.png')}}">
+		<h1 class="text-white mt-5">Trader Details</h1>
+	</div>
+</section>
+<section class="pt-5 pb-5 bg-silver">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+				<div class="card">
+				<div class="text-center">
+						  {% with messages = get_flashed_messages(with_categories=true)  %}
+
+                            {% if messages %}
+
+                                   {% for category,message in messages %}
+                                    <div class ="alert alert-{{ category }} alert-dismissible" role="alert">
+                                        <button type="button" class="close" data-dismiss='alert' aria-label="close">
+                                            <span aria-hidden="true">x</span>
+                                        </button>
+                                        {{message}}
+                                    </div>
+                                    {% endfor %}
+
+                            {%endif%}
+
+                        {% endwith %}
+
+				</div>
+				 <form method="POST">
+			     {{form.csrf_token}}
+					<div class="card-body text-center pt-5 pb-5">
+						<h5>We need just a few more details</h5>
+						<span>Your personal information will not be compromised</span>
+						<div class="row mt-4">
+							<div class="col-md-2"></div>
+							<div class="col-md-8">
+								
+								<div class="form-group">
+									<div class="text-left">
+										<label>Address</label>
+									</div>
+									<input type="text" class="form-control" placeholder="Enter Address" name="address">
+									{% for error in form.address.errors %}
+										<span style="color:red;">{{error}}</span>
+									{% endfor %}
+									
+								</div>
+								<div class="form-group">
+									<div class="text-left">
+										<label>Phone No.</label>
+									</div>
+									<input type="text" class="form-control " placeholder="Enter Phone No." name="mobile" value="{{ session.get('mobile') }}" readonly>
+									{% for error in form.mobile.errors %}
+										<span style="color:red;">{{error}}</span>
+									{% endfor %}
+								</div>
+								<div class="form-group">
+									<div class="text-left">
+										<label>Email</label>
+									</div>
+									<input type="text" class="form-control " placeholder="Enter Email" name="email" value="{{ session.get('email') }}" readonly>
+									{% for error in form.email.errors %}
+										<span style="color:red;">{{error}}</span>
+									{% endfor %}
+								</div>
+								<div class="form-group">
+									<div class="text-left">
+										<label>Company Name</label>
+									</div>
+									<input type="text" class="form-control" placeholder="Enter Company Name" name="c_name">
+									{% for error in form.c_name.errors %}
+										<span style="color:red;">{{error}}</span>
+									{% endfor %}
+								</div>
+								<div class="form-group">
+									<div class="text-left">
+										<label>Brand Name</label>
+									</div>
+									<input type="text" class="form-control" placeholder="Enter Brand Name" name="b_name">
+									{% for error in form.b_name.errors %}
+										<span style="color:red;">{{error}}</span>
+									{% endfor %}
+								</div>
+								<div class="form-group">
+									<div class="text-left">
+										<label>Description of services and products</label>
+									</div>
+									<textarea class="form-control" rows="6" placeholder="Enter Description" name="descrip_of_service"></textarea>
+									{% for error in form.descrip_of_service.errors %}
+										<span style="color:red;">{{error}}</span>
+									{% endfor %}
+								</div>
+								<div class="form-group">
+									<div class="text-left">
+										<label>Story - how did you start up?</label>
+									</div>
+									<textarea class="form-control" rows="6" placeholder="Enter Story" name="story"></textarea>
+									{% for error in form.story.errors %}
+										<span style="color:red;">{{error}}</span>
+									{% endfor %}
+								</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+					</div>
+					<div class="card-footer">
+						<div class="row">
+							<div class="col-6"></div>
+							<div class="col-6 text-right">
+								<button class="btn btn-danger" type="submit">Next</button>
+							</div>
+						</div>
+					</div>
+					</form>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}

@@ -1,0 +1,149 @@
+{% extends 'streetcube/base.jinja2' %}
+{% block title %}{% endblock %}
+ {% block content %} 
+
+ <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+ 
+ <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+ <!-- font style -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300&display=swap" rel="stylesheet">
+		<link rel="stylesheet" href="{{url_for('static', filename='boots/css/style.css')}}">
+
+<style>
+    .box_menu {
+        padding: 1rem 0rem 1rem 0rem;
+        text-align:unset;
+    }
+    .bg-section{
+        background:rgb(8 8 8 / 60%);
+        height:100%;
+    }
+    .box_menu h5{
+        position:unset;
+    }
+    .partners_btn {
+        background: rgb(255 255 255);
+    }
+</style>
+		<section class="bg-section">
+			<div class="p-3 text-center">
+				<img width="100" src="{{url_for('static', filename='img/icons/cube.svg')}}">
+			</div>
+			
+            <div class="mt-2 box_menu">
+				<div class="row m-0">
+					<div class="col-md-2">
+						
+					</div>
+					<div class="col-md-8">
+						<h5 class="text-center"><b>THANK YOU {{session.get('uname')|upper}}, YOUR DETAILS HAVE BEEN VERIFIED! <img class="ml-3" width="33" src="{{url_for('static', filename='img/icons/tick.svg')}}"></b></h5>
+						<br>
+						<p class="m-0 mb-1 p-0">Applying to trade at StreetCube requires some further details.</p>
+                        <p class="m-0 mb-1 p-0">The process involves uploading some documents, organising public liability insurance and confirming
+                        health &amp; safety certification</p>
+                        <p class="m-0 mb-1 p-0">This process will take ten minutes to complete</p>
+                        
+                        <div class="text-center">
+                            <img class="ml-3" width="60" src="{{url_for('static', filename='img/icons/time.svg')}}">
+                            <br>
+                        </div>
+                        
+                        
+                        <h6><b>GROW: <img class="ml-3 mr-3" width="22" src="{{url_for('static', filename='img/icons/cube.svg')}}"> CONTINUE WITH GAZEBO MARKET APPLICATION</b></h6>
+                        <h6><b>COOK: <img class="ml-3 mr-3" width="22" src="{{url_for('static', filename='img/icons/cube2.svg')}}"> SWITCH TO STREETCUBE CHEF APPLICATION </b></h6>
+                        <h6><b>FEED: <img class="ml-3 mr-3" width="22" src="{{url_for('static', filename='img/icons/feed.svg')}}"> SWITCH TO COMMUNITY CITY APPLICATION</b></h6>
+                        <br>
+                        <a href="{{url_for('front.gazebo_app_frm')}}"><img draggable="false" height="35" src="{{url_for('static', filename='img/icons/con-btn.svg')}}"></a>
+                        <a href="#"><img draggable="false" height="35" src="{{url_for('static', filename='img/icons/download-btn.svg')}}"></a>
+            <br>
+            <br>
+            <br>
+            <br>
+		
+					</div>
+					<div class="col-md-2">
+						{% with messages = get_flashed_messages(with_categories=true) %}
+                            {% if messages %}
+                                {% for category, message in messages %}
+                                    <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                                        <span>{{ message }}</span>
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                {% endfor %}
+                            {% endif %}
+                        {% endwith %}
+					</div>
+				</div>
+			</div>
+           
+			</section>
+		
+  
+
+{% block javascript %}
+  
+<script>
+$("#mobile").focus();
+
+$("#mobile").keydown(function(event) {
+            // Allow only backspace and delete
+            if ( event.keyCode == 46 || event.keyCode == 8 ) {
+                // let it happen, don't do anything
+            }
+            else {
+                // Ensure that it is a number and stop the keypress
+                if (event.keyCode < 48 || event.keyCode > 57 ) {
+                    event.preventDefault(); 
+                }   
+            }
+    });
+
+
+
+
+$(function() {
+
+  $("form[name='regpass']").validate({
+    
+    rules: {
+     
+      pass: {
+            required:true,
+          
+        },
+
+      cnfpass: {
+            required:true,
+            equalTo : "#cnfpass"
+          
+        },
+    },
+    
+    messages: {
+       pass:{
+            required:   "Please Enter Password",
+          
+        },
+        cnfpass:{
+            required:   "Please Enter Your Confirm Password",
+          
+        },
+    },
+   
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+
+
+
+</script> 
+      
+{% endblock %}
+
+
+ {% endblock %} 

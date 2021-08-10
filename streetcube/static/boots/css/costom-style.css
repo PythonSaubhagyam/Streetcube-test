@@ -1,0 +1,109 @@
+body{
+	font-family: 'Noto Sans JP', sans-serif;
+}
+.main_section{
+    background: url(../../img/cube_bg.jpg) center top no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    height: 100vh;
+    /*height: 100%;*/
+    position: relative;
+    overflow: auto;
+
+}
+.navbar{
+	padding-top: 0;
+	padding-bottom: 0;
+	background: #000;
+}
+.navbar .nav-link{
+	padding-top: 3px;
+    padding-bottom: 3px;
+}
+.sm_icon{
+	width: 50px;
+	position: relative;
+    left: -15px;
+    top: -6px;
+}
+.box_menu{
+	padding: 3rem;
+	background: rgb(0 0 0 / 56%);
+	text-align: center;
+	color: #fff;
+	transition: 0.3s;
+	overflow: hidden;
+}
+
+.icon_c{
+    display:none;
+}
+.box_menu:hover .icon_w{
+    display:none;
+}
+.box_menu:hover .icon_c{
+    display:inline;
+}
+.b_m1:hover h2{
+	color: #229947;
+}
+.b_m2:hover h2{
+	color: #017BBC;
+}
+.b_m3:hover h2{
+	color: #ED432C;
+}
+
+.box_menu h5{
+    position: relative;
+    bottom: -135px;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+.box_menu:hover h5{
+    bottom:0;
+    -webkit-transition: all .5s;
+    transition: all .5s;
+}
+.a_none{
+	color: unset;
+	text-decoration: none;
+}
+.a_none:hover{
+	text-decoration: none;
+	color: unset;
+}
+.footer_area{
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+}
+.partners_btn{
+	background: rgb(255 255 255 / 72%);
+    text-align: center;
+    padding: 14px;
+    font-weight: 900;
+}
+::-webkit-scrollbar {
+  z-index: 99999999;
+  width: 0;
+}
+
+/*Mobile devices*/
+ @media only screen and (max-width : 768px) {
+ 	.logo_area{
+		text-align: center;
+	}
+}	
+/* Medium Devices, Desktops */
+ @media only screen and (max-width : 992px) {
+ 	/*.logo_area{
+		text-align: center;
+	}*/
+}
+/* Large Devices, Wide Screens */
+ @media only screen and (max-width : 1200px) {
+
+}
+ @media only screen and (max-width : 1888px) {
+}

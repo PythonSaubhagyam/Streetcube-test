@@ -1,0 +1,75 @@
+{% include "include/page-header.jinja2" %}
+
+<section class="bg-dark2">
+    <h5 class="text-center pt-3 text-green"><b>GAZEBO APPLICATION FORM</b></h5>
+    <div class="text-center">
+		<img width="100" src="{{url_for('static', filename='img/icons/cube.svg')}}">
+	</div>
+	<div class="container">
+	    <div class="row">
+	    <div class="col-md-3"></div>
+	    <div class="col-md-6">
+	       
+
+        <div class="form-box mt-2">
+            
+                 <h6><b>Part 9: Business</b></h6>
+              
+            
+            <form action="" method="POST" enctype="multipart/form-data" name="gazeboappfrmtwelfth">
+                <small>
+                  <p>Information provided in this application form will be treated in the strictest confidence.</p>
+                 
+                  <p>Completing this application form does not imply that your application has been granted.
+                    This application will be assessed by the StreetCube operations committee, and we may
+                    need to contact you per phone to discuss the application. After consideration our operations committee will make a decision and let you know per email, of the outcome of your application. This process can take up to 7 working days to complete.</p>
+
+                    <p>Should your application be successful, we will use certain of this information to prepare
+                    the necessary legal agreements.
+
+                  </p> 
+                </small>
+
+
+                <div class="form-group">
+                    <label>Signature of</label>
+                        <input type="file" class="form-control-file border-0 p-0" id="" name="signature">
+                </div>
+                
+                <div class="text-right">
+                    <button type="submit" class="btn-none"><img height="35" draggable="false" src="{{url_for('static', filename='img/icons/con-btn.svg')}}"></button>
+                </div>
+                
+            </form>
+        </div>
+        <br>
+                <br>
+	    </div>
+        <p class="text-danger text-center"> {{msg}} </p>
+	    <div class="col-md-3"></div>
+	</div>
+	</div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.2/jquery.validate.min.js"> </script>
+<script>
+
+// Wait for the DOM to be ready
+$(function() {
+  $("form[name='gazeboappfrmtwelfth']").validate({
+    rules: {
+
+      signature: "required",
+    },
+   
+    messages: {
+      signature: "Please upload signature doc",
+      
+    },
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+</script>
+{% include "include/page-footer.jinja2" %}

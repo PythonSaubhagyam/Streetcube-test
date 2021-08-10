@@ -1,0 +1,149 @@
+{% extends 'streetcube/base.jinja2' %}
+{% block title %}{% endblock %}
+ {% block content %} 
+
+ <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+ 
+ <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+
+<style>
+  
+       
+            .form-group  input {
+                display: block;
+                width: 100%;
+                height: calc(2.25rem + 2px);
+                padding: .375rem .75rem;
+                font-size: 1rem;
+                font-weight: 400;
+                line-height: 1.5;
+                color: #ffffff;
+                background-color: rgb(255 255 255 / 0%);
+                background-clip: padding-box;
+                border: 2px solid #ced4da;
+                border-radius: 0;
+                transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+                outline:0;
+            }
+          
+            .form-control:focus{
+                outline:0;
+                background:none;
+                border-color:white;
+                box-shadow:none;
+            }
+            .form-control::placeholder {
+              color: rgb(255 255 255 / 64%);
+              opacity: 1; /* Firefox */
+            }
+            
+            .form-control:-ms-input-placeholder { /* Internet Explorer 10-11 */
+             color: rgb(255 255 255 / 64%);
+            }
+            
+            .form-control::-ms-input-placeholder { /* Microsoft Edge */
+             color: rgb(255 255 255 / 64%);
+            }
+            .btn{
+                background: #fff;
+                border-radius: 0;
+            }
+            .box_menu {
+                padding: 3rem 3rem 3rem 3rem;
+            }
+    </style>
+
+<div class="p-5 logo_area">
+                <img width="120" src="/static/img/logo.png">
+            </div>
+<div class="mt-3 box_menu">
+				<div class="row m-0">
+					<div class="col-md-3">
+						
+					</div>
+					<div class="col-md-6">
+						<form  action="" method="POST" name="regul">
+
+                        
+                          
+                            <h4 class="text-center">Please type your full name</h4>
+                            <div class="form-group mt-3">
+                            <input placeholder="First Name:" class="form-control" oninput="this.className = ''" name="uname" id="uname">
+                            </div>
+
+                            <div class="form-group mt-3">
+                            <input placeholder="Last Name:" class="form-control" oninput="this.className = ''" name="lname">
+                            </div>
+
+                             <div class="text-right">
+                              <button type="submit" class="btn">Next</button>
+                            </div> 
+
+                        
+                       
+                          
+                        </form>
+
+					</div>
+					<div class="col-md-3">
+						
+					</div>
+				</div>
+			</div>
+
+ 
+ 
+  
+
+{% block javascript %}
+<script>
+$("#uname").focus();
+$(function() {
+
+  $("form[name='regul']").validate({
+    
+    rules: {
+     
+      uname:{
+            required:true,
+            minlength:3,
+            maxlength:16,
+        },
+
+
+      lname:{
+            required:true,
+            minlength:3,
+            maxlength:16,
+        },
+    },
+    
+    messages: {
+       uname:{
+            required:   "First name is required",
+            minlength:  "First name should be minimum 3 characters",
+            maxlength:  "First name should be maximum 16 characters",
+        },
+      
+        lname:{
+            required:   "Last name is required",
+            minlength:  "Last name should be minimum 3 characters",
+            maxlength:  "Last name should be maximum 16 characters",
+        },
+    },
+   
+    submitHandler: function(form) {
+      form.submit();
+    }
+  });
+});
+
+
+
+</script>  
+
+      
+{% endblock %}
+
+
+ {% endblock %} 

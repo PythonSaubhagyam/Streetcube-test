@@ -1,0 +1,125 @@
+
+<div id="pageloader-overlay" class="visible incoming"><div class="loader-wrapper-outer"><div class="loader-wrapper-inner" ><div class="loader"></div></div></div></div>
+   <!-- end loader -->
+<!-- Start wrapper-->
+<div id="wrapper">
+  <!--Start sidebar-wrapper-->
+  <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
+    <div class="brand-logo">
+      <a href="{{ url_for('admin.dashboard') }}">
+        <img src="{{ url_for('static', filename='images/logo/logo.png')}}" class="logo-icon" alt="logo icon">
+        <h5 class="logo-text">StreetCube Admin</h5>
+      </a>
+    </div>
+    <div class="user-details">
+      <div class="media align-items-center user-pointer collapsed" data-toggle="collapse" data-target="#user-dropdown">
+        <div class="avatar"><img class="mr-3 side-user-img" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+          <div class="media-body">
+          <h6 class="side-user-name">{{ current_user.uname }}</h6>
+        </div>
+      </div>
+      <div id="user-dropdown" class="collapse">
+        <ul class="user-setting-menu">
+          <li><a href="javaScript:void();"><i class="icon-user"></i>  My Profile</a></li>
+          <li><a href="{{url_for('admin.logout')}}"><i class="icon-power"></i> Logout</a></li>
+        </ul>
+      </div>
+    </div>
+    <ul class="sidebar-menu">
+      <!-- <li class="sidebar-header">MAIN NAVIGATION</li> -->
+      <li>
+        <a href="{{ url_for('admin.dashboard') }}" class="waves-effect">
+            <i class="zmdi zmdi-view-dashboard"></i> <span>Dashboard</span>
+        </a>
+      </li>
+
+
+        <li>
+        <a href="javaScript:void();" class="waves-effect">
+          <i class="zmdi zmdi-view-dashboard"></i> <span>User</span><i class="fa fa-angle-left pull-right"></i>
+        </a>
+            <ul class="sidebar-submenu">
+              <li><a href="{{ url_for('admin.create_user') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Create User </a></li>
+              <li><a href="{{ url_for('admin.show_user_list') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Show User List</a></li>
+            </ul>
+        </li>
+
+        <li>
+            <a href="javaScript:void();" class="waves-effect">
+              <i class="zmdi zmdi-view-dashboard"></i> <span>Trader Details</span><i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+              <li><a href="{{ url_for('admin.show_trader_list') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Show Trader List</a></li>
+            </ul>
+        </li>
+
+        <li>
+             <a href="javaScript:void();" class="waves-effect">
+              <i class="zmdi zmdi-view-dashboard"></i> <span>Slot Order Details</span><i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+             
+              <li><a href="{{ url_for('admin.show_slot_book_list') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Show Slot Book List</a></li>
+            </ul>
+        </li>
+
+        <li>
+             <a href="javaScript:void();" class="waves-effect">
+              <i class="zmdi zmdi-view-dashboard"></i> <span>Order Confirm Details</span><i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+              <li><a href="{{ url_for('admin.show_order_list') }}"><i class="zmdi zmdi-dot-circle-alt"></i>Order List</a></li>
+            </ul>
+        </li>
+
+          <li>
+             <a href="javaScript:void();" class="waves-effect">
+              <i class="zmdi zmdi-view-dashboard"></i> <span>Slot Report</span><i class="fa fa-angle-left pull-right"></i>
+            </a>
+            <ul class="sidebar-submenu">
+              <li><a href="{{ url_for('admin.slot_report') }}"><i class="zmdi zmdi-dot-circle-alt"></i> Slot Report List</a></li>
+            </ul>
+        </li>
+    </ul>
+  </div>
+   <!--End sidebar-wrapper-->
+
+  <!--Start topbar header-->
+  <header class="topbar-nav">
+    <nav id="header-setting" class="navbar navbar-expand fixed-top">
+      <ul class="navbar-nav mr-auto align-items-center">
+        <li class="nav-item">
+          <a class="nav-link toggle-menu" href="javascript:void();">
+           <i class="icon-menu menu-icon"></i>
+         </a>
+        </li>
+        
+      </ul>
+
+      <ul class="navbar-nav align-items-center right-nav-link">
+        
+        <li class="nav-item">
+          <a class="nav-link dropdown-toggle dropdown-toggle-nocaret" data-toggle="dropdown" href="#">
+            <span class="user-profile"><img src="https://via.placeholder.com/110x110" class="img-circle" alt="user avatar"></span>
+          </a>
+          <ul class="dropdown-menu dropdown-menu-right">
+           <li class="dropdown-item user-details">
+            <a href="javaScript:void();">
+               <div class="media">
+                 <div class="avatar"><img class="align-self-start mr-3" src="https://via.placeholder.com/110x110" alt="user avatar"></div>
+                <div class="media-body">
+                <h6 class="mt-2 user-title">{{ current_user.uname }}</h6>
+                <p class="user-subtitle">{{ current_user.email }}</p>
+                </div>
+               </div>
+              </a>
+            </li>
+
+              <li class="dropdown-item"><i class="icon-power mr-2"></i><a href="{{url_for('admin.logout')}}">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+  </header>
+
+

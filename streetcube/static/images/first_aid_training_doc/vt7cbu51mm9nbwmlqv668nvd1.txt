@@ -1,0 +1,58 @@
+if 'custom_video' in request.files:
+        custom_video = request.files['custom_video']
+        filename = secure_filename(custom_video.filename)
+        filetype, extension = splitext(filename)
+        newfilename = str(randomkey(25)).lower() + extension
+        custom_video.save(os.path.join(CUSTOM_VIDEO, newfilename))
+        s3CustomVideoPath = upload_file_to_s3(newfilename, 'fansvans-custom-videos',CUSTOM_VIDEO)
+
+
+        return jsonify({'error': 0, 'message': 'File is uploaded successfully.','filepath':s3CustomVideoPath})
+    else:
+        return jsonify({'error': 1, 'message': 'Sorry file is not uploaded.'})
+
+
+
+
+
+[
+    {
+        "AllowedHeaders": [],
+        "AllowedMethods": [
+            "PUT",
+            "POST",
+            "DELETE"
+        ],
+        "AllowedOrigins": [
+            "https://www.fansvenue.com"
+        ],
+        "ExposeHeaders": []
+    }
+]
+
+
+
+proof_of_ncass_doc = request.files['proof_of_ncass_doc']
+        cv_doc = request.files['cv_doc']
+        level_2_hygiene_doc = request.files['level_2_hygiene_doc']
+        covid_19_safety_doc = request.files['covid_19_safety_doc']
+        health_safety_doc = request.files['health_safety_doc']
+        first_aid_doc = request.files['first_aid_doc']
+        fire_extinguisher_doc = request.files['fire_extinguisher_doc']
+
+
+
+
+
+ {% with messages = get_flashed_messages(with_categories=true) %}
+          {% if messages %}
+              {% for category, message in messages %}
+                  <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert">
+                      <span>{{ message }}</span>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                      </button>
+                  </div>
+              {% endfor %}
+          {% endif %}
+      {% endwith %}

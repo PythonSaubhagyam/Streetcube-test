@@ -1,0 +1,206 @@
+{% extends 'admin/layout.jinja2' %}
+{% block body %}
+    <div class="clearfix"></div>
+
+  <div class="content-wrapper">
+    <div class="container-fluid">
+      <!-- Breadcrumb-->
+     <div class="row pt-2 pb-2">
+        <div class="col-sm-12">
+		    <h4 class="page-title"Slot Booking</h4>
+
+	   </div>
+     </div>
+    <!-- End Breadcrumb-->
+<form method="post">
+           {{form.csrf_token}}
+     <div class="row">
+
+     
+
+        <div class="col-md-6">
+          <div class="card">
+              <div class="card-header text-uppercase">Slot</div>
+              <div class="card-body">
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">1</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">2</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">3</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">4</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">5</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">6</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">7</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">8</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">9</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">10</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">11</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">12</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">13</button>
+                <button type="button" class="btn btn-dark waves-effect waves-light m-1 slot-btn">14</button>
+                
+              </div>
+          </div>
+        </div>
+
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-header text-uppercase">Slot Booking</div>
+               <div class="card-body">
+
+                   <label>Choose Date</label>
+                   <input type="text" id="cal" name="select_date" class="form-control" autocomplete="off">
+                   <hr>
+                   <input type="hidden" id="choose_slot" name="choose_slot"  class="form-control">
+                   <h6 class="mb-0">You have selected slot<span class="text-danger" id="book-slot"></span></h6>
+                   <h6 class="mb-0 mt-2">You have selected market slot date for<span class="text-danger" id="book-date"></span></h6>
+                   <h6 class="mb-0 mt-2" id="amount">And your total amount is <span class="text-danger" id="slot-price"></span></h6>
+
+                   <hr>
+                   <button type="submit" class="btn btn-danger waves-effect waves-light m-1">Pay Now <span id="total" class="text-white"></span></button>
+
+               </div>
+            </div>
+
+          
+        </div>
+
+      </div>
+</form>
+      <!--End Row-->
+<!--start overlay-->
+		  <div class="overlay toggle-menu"></div>
+		<!--end overlay-->
+
+
+ </div>   <!-- End container-fluid-->
+ <!-- Flash Message-->
+ <div class="text-center">
+{% with messages = get_flashed_messages(with_categories=true) %}
+  {% if messages %}
+    <ul class=flashes>
+    {% for category, message in messages %}
+      <li class="{{ category }}">{{ message }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
+</div>
+  </div>
+
+   <!--Start Back To Top Button-->
+    <a href="javaScript:void();" class="back-to-top"><i class="fa fa-angle-double-up"></i> </a>
+    <!--End Back To Top Button-->
+
+
+
+
+
+<script>
+        $( document ).ready(function() {
+        let total =0;
+        let len = 0;
+        u_price = 0;
+
+           $("#cal").hide();
+
+
+           var block_date ='';
+   $('.slot-btn').click(function(){
+
+     // $("#cal").show();
+      var slot =$(this).text();
+      alert("You have selected slot "+slot);
+
+      $("#choose_slot").val(slot);
+      $("#book-slot").html("   "+slot);
+
+      var slot =$(this).text();
+
+      $.ajax({
+          url: "/admin/date/block/"+slot,
+          success: function(response) {
+            block_date= response.block_date;
+            $('#cal').show();
+            $('#cal').datepicker({
+              daysOfWeekDisabled: "1,2,3,4",
+              multidate: true,
+              multidateSeparator: ', ',
+              format: 'yyyy-mm-dd',
+              todayHighlight:'TRUE',
+              //startDate: '-0d',
+              datesDisabled:block_date,
+              startDate: "now()",
+          });
+
+          },
+          error: function(xhr) {
+          //Do Something to handle error
+          }
+      });
+      $('#cal').datepicker('destroy');
+       $.ajax({
+      url:"/admin/slot/price/"+slot,
+      success: function(response){
+       u_price = response;
+        
+      }
+   })
+
+   })
+     $('#cal').on('change',function () {
+
+        var inputDate = $(this).val();
+
+        array = inputDate.split(',');
+        console.log(array);
+
+        $('#book-date').text("     "+inputDate)
+        //arr.push(inputDate);
+        //console.log(removeDuplicates(array));
+        total = removeDuplicates(array);
+        len = total.length;
+
+        $("#slot-price").html("£"+len*u_price);
+        $("#total").html("£"+len*u_price);
+        //console.log(arr)
+
+      });
+      function removeDuplicates(data) {
+        let unique = [];
+        data.forEach(element =>{
+            if (!unique.includes(element)){
+                if(element!=""){
+                      unique.push(element)
+                }
+
+            }
+        });
+        return unique;
+
+    } 
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          
+        });
+</script>
+
+
+
+{% endblock %}

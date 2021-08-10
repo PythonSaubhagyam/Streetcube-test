@@ -1,0 +1,118 @@
+{% extends 'streetcube/base.jinja2' %}
+
+ {% block content %} 
+  
+  <link rel="stylesheet" type="text/css" href="/static/assets/css/multi-form.css"> 
+  <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="/static/assets/js/multi-form.js"></script>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      $.validator.addMethod('date', function(value, element, param) {
+        return (value != 0) && (value <= 31) && (value == parseInt(value, 10));
+      }, 'Please enter a valid date!');
+      $.validator.addMethod('month', function(value, element, param) {
+        return (value != 0) && (value <= 12) && (value == parseInt(value, 10));
+      }, 'Please enter a valid month!');
+      $.validator.addMethod('year', function(value, element, param) {
+        return (value != 0) && (value >= 1900) && (value == parseInt(value, 10));
+      }, 'Please enter a valid year not less than 1900!');
+      $.validator.addMethod('username', function(value, element, param) {
+        var nameRegex = /^[a-zA-Z0-9]+$/;
+        return value.match(nameRegex);
+      }, 'Only a-z, A-Z, 0-9 characters are allowed');
+
+     var val = {
+          // Specify validation rules
+          rules: {
+            otp: "required",
+          },
+          // Specify validation error messages
+          messages: {
+        
+          otp:{
+            required:   "Password is required",
+            minlength:  "Otp should be minimum 4 digits",
+            maxlength:  "Otp should be maximum 4 digits",
+          }
+          }
+      }
+      $("#myOtpForm").multiStepForm(
+      {
+        // defaultStep:0,
+        beforeSubmit : function(form, submit){
+          console.log("called before submiting the form");
+          console.log(form);
+          console.log(submit);
+        },
+        validations:val,
+      }
+      ).navigateTo(0);
+    });
+  </script>
+
+  <script>
+
+let timerOn = true;
+
+function timer(remaining) {
+  var x = document.getElementById("rsend");
+  var m = Math.floor(remaining / 60);
+  var s = remaining % 60;
+
+  m = m < 10 ? '0' + m : m;
+  s = s < 10 ? '0' + s : s;
+  document.getElementById('timer').innerHTML = m + ':' + s;
+  remaining -= 1;
+
+  if(remaining >= 0 && timerOn) {
+    setTimeout(function() {
+        timer(remaining);
+    }, 1000);
+    return;
+  }
+
+  if(!timerOn) {
+    // Do validate stuff here
+    return;
+  }
+  x.style.display = "block";
+  $('#timer').html('');
+  // Do timeout stuff here
+  //alert('Timeout for otp');
+
+}
+
+timer(60);
+</script>
+
+ {{ session.get('otp') }}
+  <form id="myOtpForm" action="#" method="POST">
+  
+    <div class="col-md-8">
+								<div class="form-group mt-4 mb-4">
+									<label>Please enter the 4 digit pin we just sent you</label>
+									<input type="text" class="form-control form-control-lg" placeholder="Enter 4 digit pin" name="otp">
+                                   
+                                    <div>
+                                        <label class="mt-4"><a href="/resend/otp" style="text-decoration:none; color:#dc3545; display:block; display:none; padding-top:10px;" id="rsend">Resend otp</a></label>
+                                        <span id="timer"></span>
+                                    </div>
+								</div>
+							</div>
+   
+    <div style="overflow:auto;">
+      <div style="float:right; margin-top: 5px;">
+          <button type="button" class="previous">Previous</button>
+          <button type="button" class="next">Next</button>
+      <button type="button" class="submit">Submit</button>
+      </div>
+    </div>
+    <!-- Circles which indicates the steps of the form: -->
+    <div class ="d-none" style="text-align:center;margin-top:40px;">
+      <span class="step">1</span>
+     
+ 
+    </div>
+  </form>
+ {% endblock %} 

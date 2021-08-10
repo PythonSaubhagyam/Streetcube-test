@@ -1,0 +1,71 @@
+{% extends 'layout/layout.jinja2' %}
+{% block body %}
+<section class="page-bg">
+	<div class="container text-center">
+		<img width="150" src="{{ url_for('static', filename='images/logo/logo.png')}}">
+		<h1 class="text-white mt-5">Join Now</h1>
+	</div>
+</section>
+<section class="pt-5 pb-5 bg-silver">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2"></div>
+			<div class="col-md-8">
+              
+				<div class="card">
+                 <div class="text-center">
+						{% with messages = get_flashed_messages() %}
+
+                        {% if messages %}
+
+                        <div class ="alert alert-success alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss='alert' aria-label="close">
+                                <span aria-hidden="true">x</span>
+                            </button>
+                            {{message}}
+                        </div>
+
+                        {%endif%}
+
+                        {% endwith %}
+
+				</div>
+				  <form method="POST">
+			     {{form.csrf_token}}
+					<div class="card-body text-center pt-5 pb-5">
+						<h5>Please create a memorable password - you can change it at a later date if you wish</h5>
+						<div class="row">
+							<div class="col-md-2"></div>
+							<div class="col-md-8">
+								<div class="form-group mt-4 mb-4">
+							<input type="password" class="form-control form-control-lg" placeholder="Enter your password" name="password">
+                            {% for error in form.password.errors %}
+                        		<span style="color:red;">{{error}}</span>
+                        	{% endfor %}
+						</div>
+							</div>
+							<div class="col-md-2"></div>
+						</div>
+						
+					</div>
+					<div class="card-footer">
+						<div class="row">
+							<div class="col-6"></div>
+							<div class="col-6 text-right">
+								<button class="btn btn-danger" type="submit">Next</button>
+							</div>
+						</div>
+					</div>
+                    </form>
+				</div>
+                
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+	</div>
+</section>
+{% endblock %}
+
+{% block script %}
+
+{% endblock %}
